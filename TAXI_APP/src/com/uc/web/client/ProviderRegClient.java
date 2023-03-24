@@ -1,0 +1,37 @@
+package com.uc.web.client;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.uc.businessbean.ProviderRegBean;
+
+@Service
+public class ProviderRegClient {
+
+	private RestTemplate restTemplate;
+	@Value("${ProviderRegService.serviceURL}")
+	private String serviceUrl;
+	@Value("${ProviderRegService.apiURL}")
+	private String apiUrl;
+	
+	public ProviderRegClient() {
+		this.restTemplate=new RestTemplate();
+	}
+	
+	public ProviderRegBean addNewProvider(ProviderRegBean rbean) {
+		System.out.println(apiUrl);
+		HttpHeaders header = new HttpHeaders();
+		header.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<ProviderRegBean> bean = new HttpEntity<ProviderRegBean>(rbean,header);
+		ResponseEntity<ProviderRegBean> response = restTemplate.exchange(serviceUrl+apiUrl,HttpMethod.POST,bean,ProviderRegBean.class);
+		ProviderRegBean dummy = response.getBody();
+		return dummy;
+		
+	}
+}
