@@ -1,0 +1,75 @@
+package com.uc.businessbean;
+
+
+
+import java.sql.Blob;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
+
+
+public class RegistrationBean {
+
+	private Integer C_ID;
+
+	private String C_NAME;
+	private String Contact;
+	private String email;
+	private String Address;
+	private byte[] Photo;
+	private String username;
+	private String password;
+	public Integer getC_ID() {
+		return C_ID;
+	}
+	public void setC_ID(Integer C_ID) {
+		C_ID = C_ID;
+	}
+	public String getC_NAME() {
+		return C_NAME;
+	}
+	public void setC_NAME(String c_NAME) {
+		C_NAME = c_NAME;
+	}
+	public String getContact() {
+		return Contact;
+	}
+	public void setContact(String contact) {
+		Contact = contact;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public byte[] getPhoto() {
+		return Photo;
+	}
+	public void setPhoto(byte[] photo) {
+		Photo = photo;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+}	
