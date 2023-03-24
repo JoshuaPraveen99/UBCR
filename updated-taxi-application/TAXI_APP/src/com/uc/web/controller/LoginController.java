@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,6 +30,8 @@ import com.uc.service.RegistrationService;
 public class LoginController {
 	@Autowired LoginService ls;
 	@Autowired RegistrationService rs;
+	@Autowired JavaMailSender javaMailSender;
+	RegistrationBean registrationBean= new RegistrationBean();
 
 	
 	@RequestMapping(value = "/ShowLoginPage")
@@ -76,7 +80,7 @@ public class LoginController {
 			@RequestParam("Photo")MultipartFile Photo) throws Exception
 	{
 		//ModelAndView mv= new ModelAndView();
-		RegistrationBean registrationBean= new RegistrationBean();
+
 		RegistrationBean registrationBean1=new RegistrationBean();
         registrationBean.setC_NAME(C_NAME);
         registrationBean.setContact(Contact);
@@ -91,9 +95,22 @@ public class LoginController {
 		System.out.println(registrationBean.getEmail());
 		System.out.println(registrationBean.getPhoto());
 		//mv.setViewName("RegistrationSuccess");
+		String otp=generateOTP();
+		sendEmailOTP(email,otp);
+		//sendSMSOTP(Contact,otp);
 		registrationBean=rs.saveDetails(registrationBean);
 		return "RegistrationSuccess";
 		
+	}
+	private String generateOTP() {
+		return String.valueOf((int)(Math.random()*900000)+100000);
+	}
+	private void sendEmailOTP(String email,String otp) {
+		SimpleMailMessage message=new SimpleMailMessage();
+		message.setTo(email);
+		message.setSubject("OTP for your application");
+		message.setText("Your OTP is: + otp");
+		javaMailSender.send(message);
 	}
 	
 
