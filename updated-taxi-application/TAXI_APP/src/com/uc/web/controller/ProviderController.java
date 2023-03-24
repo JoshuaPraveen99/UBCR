@@ -10,24 +10,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uc.businessbean.LoginBean;
+import com.uc.businessbean.ProviderLoginBean;
 import com.uc.businessbean.ProviderRegBean;
-import com.uc.businessbean.RegistrationBean;
 import com.uc.web.client.ProviderLoginClient;
+import com.uc.web.client.ProviderRegClient;
 
 @Controller
 public class ProviderController {
 
-	@Autowired ProviderLoginClient ps;
+	@Autowired 
+	ProviderLoginClient ps;
+	
+	@Autowired
+	ProviderRegClient rc;
 
 	//providing bean for loginPage
 	@RequestMapping(value = "/showProviderLoginPage")
 	public ModelAndView showLoginPage() {
-		return new ModelAndView("ProviderLogin", "providerLoginBean", new LoginBean());
+		return new ModelAndView("ProviderLogin", "providerLoginBean", new ProviderLoginBean());
 	}
 
 	// validate the user credentials
 	@RequestMapping(value="/ValidateProviderLogin")
-	public ModelAndView validateLogin(@Valid @ModelAttribute("providerLoginBean") LoginBean loginBean, BindingResult result) {
+	public ModelAndView validateLogin(@Valid @ModelAttribute("providerLoginBean") ProviderLoginBean loginBean, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()) {
 			mv.setViewName("ProviderLogin");
@@ -54,16 +59,25 @@ public class ProviderController {
 	//providing bean for providerReg page
 	@RequestMapping(value="/showProviderRegPage")
 	public ModelAndView showProviderRegPage() {
+		System.out.println("show provider working");
 		return new ModelAndView("ProviderRegistration","regBean",new ProviderRegBean());
 	}
 	
-	//adding new provider to the db
+	//adding new provider to the database
 	@RequestMapping(value="/addNewProvider")
-	public ModelAndView addNewProvider(@Valid @ModelAttribute("regBean")RegistrationBean rbean, BindingResult result) {
-		return null;
+	public ModelAndView addNewProvider(@ModelAttribute("regBean")ProviderRegBean rbean) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Controller working");
+		ProviderRegBean bean = rc.addNewProvider(rbean);
+		if(bean!=null) {
+			mv.setViewName("RegistrationSuccess");
+			mv.addObject("message","A new provider has been registered successfully");
+		}
+		return mv;
 		
 		
 	}
+	
 	
 	
 }

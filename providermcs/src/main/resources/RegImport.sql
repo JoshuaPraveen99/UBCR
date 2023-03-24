@@ -2,7 +2,7 @@
 use providerdb;
 drop table if exists registration;
 create table registration(
-p_ID INT not null primary key,
+p_ID INT AUTO_INCREMENT not null primary key,
 p_NAME VARCHAR(30) not null,
 EMAIL VARCHAR(30) not null,
 Contact Double not null,

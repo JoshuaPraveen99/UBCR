@@ -75,13 +75,13 @@ body {
 </head>
 <body>
 		<h1>Provider Details Registration Form</h1>
-	<form:form modelAttribute="providerRegBean" method="POST" enctype="multipart/form-data"
-				action="${pageContext.request.contextPath}/addProvider.html">
+	<form:form modelAttribute="regBean" method="POST" enctype="multipart/form-data"
+				action="${pageContext.request.contextPath}/addNewProvider.html">
 	<table>
 	
 	<tr>
 		<th>Provider Name:</th>
-		<td><form:input path="name" required="required"/></td>
+		<td><form:input path="provider_Name" required="required"/></td>
 	</tr>
 	
 	<tr>
@@ -96,7 +96,7 @@ body {
 	
 	<tr>
 		<th>Address:</th>
-		<td><form:input path="address" required="required"/></td>
+		<td><form:input path="Address" required="required"/></td>
 	</tr>
 	
 	<tr>
@@ -127,7 +127,7 @@ body {
 	
 	<tr>
 		<th>Registration Number:</th>
-		<td><form:input path="regNum" required="required"/></td>
+		<td><form:input path="regNumber" required="required"/></td>
 	</tr>
 	
 	<tr>
@@ -138,7 +138,7 @@ body {
 	
 	<tr>
 		<th>License Number:</th>
-		<td><form:input path="licenseNo" required="required"/></td>
+		<td><form:input path="licenseNum" required="required"/></td>
 	</tr>
 	
 	<tr>
@@ -161,7 +161,7 @@ body {
 	</table>
 	<input type="submit" value="Register">
 	
-	<spring:hasBindErrors name="providerRegBean">
+	<spring:hasBindErrors name="RegBean">
 				<h2>All errors</h2>
 				<form:errors path="*" />
 			</spring:hasBindErrors>

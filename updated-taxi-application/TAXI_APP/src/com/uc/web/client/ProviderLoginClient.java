@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.uc.businessbean.LoginBean;
+import com.uc.businessbean.ProviderLoginBean;
 
 @Service
 public class ProviderLoginClient {
@@ -27,10 +28,10 @@ public class ProviderLoginClient {
 	
 
     
-	public LoginBean hitGetUserDetails(LoginBean lbean) {
+	public LoginBean hitGetUserDetails(ProviderLoginBean loginBean) {
 		System.out.println(serviceURL);
 		System.out.println(apiURL);
-		System.out.println(lbean.getUserName());
+		System.out.println(loginBean.getUserName());
 		/*List<HttpMessageConverter<?>> converters = new ArrayList<>();
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 	    converter.setObjectMapper(new ObjectMapper());
@@ -43,7 +44,7 @@ public class ProviderLoginClient {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<LoginBean> entity= new HttpEntity<LoginBean>(lbean,headers);
+		HttpEntity<ProviderLoginBean> entity= new HttpEntity<ProviderLoginBean>(loginBean,headers);
 		System.out.println(entity);
 		ResponseEntity<LoginBean> response = restTemplate.exchange(serviceURL+apiURL, HttpMethod.POST,
 				  entity,LoginBean.class);

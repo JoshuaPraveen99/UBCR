@@ -30,7 +30,7 @@ import com.uc.service.RegistrationService;
 public class LoginController {
 	@Autowired LoginService ls;
 	@Autowired RegistrationService rs;
-	@Autowired JavaMailSender javaMailSender;
+	//@Autowired JavaMailSender javaMailSender;
 	RegistrationBean registrationBean= new RegistrationBean();
 
 	
@@ -95,14 +95,14 @@ public class LoginController {
 		System.out.println(registrationBean.getEmail());
 		System.out.println(registrationBean.getPhoto());
 		//mv.setViewName("RegistrationSuccess");
-		String otp=generateOTP();
-		sendEmailOTP(email,otp);
+		//String otp=generateOTP();
+		//sendEmailOTP(email,otp);
 		//sendSMSOTP(Contact,otp);
 		registrationBean=rs.saveDetails(registrationBean);
 		return "RegistrationSuccess";
 		
 	}
-	private String generateOTP() {
+	/*private String generateOTP() {
 		return String.valueOf((int)(Math.random()*900000)+100000);
 	}
 	private void sendEmailOTP(String email,String otp) {
@@ -111,8 +111,7 @@ public class LoginController {
 		message.setSubject("OTP for your application");
 		message.setText("Your OTP is: + otp");
 		javaMailSender.send(message);
-	}
-	
+	}*/
 
 
 	
