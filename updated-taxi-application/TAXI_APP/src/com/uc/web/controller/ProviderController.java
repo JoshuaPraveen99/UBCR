@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.uc.businessbean.LoginBean;
 import com.uc.businessbean.ProviderLoginBean;
 import com.uc.businessbean.ProviderRegBean;
+import com.uc.businessbean.TrailBean;
 import com.uc.web.client.ProviderLoginClient;
 import com.uc.web.client.ProviderRegClient;
 
@@ -68,16 +69,27 @@ public class ProviderController {
 	public ModelAndView addNewProvider(@ModelAttribute("regBean")ProviderRegBean rbean) {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("Controller working");
+		System.out.println(rbean);
 		ProviderRegBean bean = rc.addNewProvider(rbean);
 		if(bean!=null) {
 			mv.setViewName("RegistrationSuccess");
 			mv.addObject("message","A new provider has been registered successfully");
 		}
-		return mv;
-		
-		
+		return mv;	
 	}
 	
+	@RequestMapping(value="/trail")
+	public ModelAndView saveImage() {
+		System.out.println("bean sent");
+		return new ModelAndView("ImageTrail","trailBean", new TrailBean());
+	}
 	
-	
+	@RequestMapping(value="/trail/save/image")
+	public ModelAndView saveImage(@ModelAttribute("trailBean")TrailBean bean) {
+		ModelAndView mv = new ModelAndView();
+		TrailBean msg = rc.sendImage(bean);
+		mv.addObject("response", msg);
+		mv.setViewName("ImageTrail");
+		return mv;
+	}
 }

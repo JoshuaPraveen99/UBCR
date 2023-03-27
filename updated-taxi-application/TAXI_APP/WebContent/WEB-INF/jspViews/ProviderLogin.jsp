@@ -127,6 +127,7 @@ form {
 		<div class="register">
 			Wanna join our team? <a href="${pageContext.request.contextPath}/showProviderRegPage.html">Register</a>
 		</div>
+		<a href="${pageContext.request.contextPath}/trail.html">Image_Trail</a>
 	</center>
 	
 	</div>

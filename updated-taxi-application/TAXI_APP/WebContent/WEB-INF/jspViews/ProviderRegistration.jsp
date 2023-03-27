@@ -12,20 +12,22 @@
 }
 body {
 			font-family: Arial, sans-serif;
-			background-color: #f5f5f5;
+			background: linear-gradient(to bottom right, #CBE4DE, #2C3333);
 		}
 		
 		h1 {
 			text-align: center;
-			color: #333;
+			color: #2C3333;
 			margin-top: 50px;
 		}
 		
 		form {
 			max-width: 600px;
+			text-align: center;
 			margin: 0 auto;
 			padding: 20px;
-			background-color: #fff;
+			color: #CBE4DE;
+			background-color: #2C3333;
 			border-radius: 10px;
 			box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
 		}
@@ -33,7 +35,8 @@ body {
 		label {
 			display: inline-block;
 			margin-bottom: 10px;
-			color: #333;
+			color: #CBE4DE;
+			text-align: center;
 		}
 		
 		input[type="text"],
@@ -47,28 +50,35 @@ body {
 			border-radius: 5px;
 			border: none;
 			background-color: #f5f5f5;
-			color: #333;
+			color: #0f0f0f;
 			box-sizing: border-box;
 		}
 		
 		input[type="file"] {
-			margin-bottom: 20px;
+			margin-bottom: 10px;
+			text-align: center;
 		}
 		
 		input[type="submit"] {
 			display: block;
 			width: 100%;
 			padding: 10px;
-			background-color: #333;
-			color: #fff;
+			background-color: #CBE4DE;
+			color: CBE4DE;
 			border: none;
 			border-radius: 5px;
 			cursor: pointer;
+			transition: background-color 0.3s ease-in-out; 
+			animation: pulse 1s ease-in-out infinite;
 		}
 		
 		input[type="submit"]:hover {
-			background-color: #555;
+			background-color: #2E4F4F;
+			text-align: center;
+			colour: #CBE4DE;
+			animation: pulse 1s ease-in-out infinite;
 		}
+		
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registration Page</title>
@@ -101,7 +111,7 @@ body {
 	
 	<tr>
 		<td><label for="photo">Provider Photo:</label>
-		    <input type="file" id="Photo" name="provider_Photo" accept="image/*" required="required">
+		    <input type="file" id="Photo" name="provider_Image" accept="image/*" required="required">
 		</td>
 	</tr>
 	
@@ -132,7 +142,7 @@ body {
 	
 	<tr>
 		<td><label for="photo">Car Photo:</label>
-		    <input type="file" id="Photo" name="car_Photo" accept="image/*" required="required">
+		    <input type="file" id="Photo" name="car_Image" accept="image/*" required="required">
 		</td>
 	</tr>
 	
@@ -143,7 +153,7 @@ body {
 	
 	<tr>
 		<td><label for="photo">License Photo:</label>
-		    <input type="file" id="Photo" name="license_Photo" accept="image/*" required="required">
+		    <input type="file" id="Photo" name="license_Image" accept="image/*" required="required">
 		</td>
 	</tr>
 	
@@ -154,7 +164,7 @@ body {
 	
 	<tr>
 		<td><label for="photo">RC Photo:</label>
-		    <input type="file" id="Photo" name="rc_Photo" accept="image/*" required="required">
+		    <input type="file" id="Photo" name="rc_Image" accept="image/*" required="required">
 		</td>
 	</tr>
 	

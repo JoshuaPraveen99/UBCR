@@ -1,5 +1,7 @@
 package com.uc.businessbean;
 
+import java.util.Arrays;
+
 public class RegBean {
 
 	private Integer provider_ID;
@@ -119,5 +121,15 @@ public class RegBean {
 	public void setRcNum(String rcNum) {
 		this.rcNum = rcNum;
 	}
+	@Override
+	public String toString() {
+		return "RegBean [provider_ID=" + provider_ID + ", provider_Name=" + provider_Name + ", contact=" + contact
+				+ ", email=" + email + ", Address=" + Address + ", provider_Photo=" + Arrays.toString(provider_Photo)
+				+ ", userName=" + userName + ", password=" + password + ", carType=" + carType + ", carModel="
+				+ carModel + ", regNumber=" + regNumber + ", carPhoto=" + Arrays.toString(carPhoto) + ", licenseNum="
+				+ licenseNum + ", license_Photo=" + Arrays.toString(license_Photo) + ", rcNum=" + rcNum + ", rc_Photo="
+				+ Arrays.toString(rc_Photo) + "]";
+	}
+	
 	
 }

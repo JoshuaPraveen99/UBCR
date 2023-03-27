@@ -16,7 +16,7 @@ public class RegServiceImpl implements RegService{
 	@Override
 	public RegBean addNewProvider(RegBean regBean) {
 		RegBean rbean = new RegBean();
-		RegEntity rEntity = rdao.save(convertBeanToEntity(regBean));
+		RegEntity rEntity = rdao.RegisterNewProvider(convertBeanToEntity(regBean));
 		rbean = convertEntityToBean(rEntity);
 		return rbean;
 	}

@@ -2,14 +2,18 @@ package com.uc.entity;
 
 
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="registration")
 public class RegEntity {
 
 	@Id
@@ -25,7 +29,7 @@ public class RegEntity {
 	@Column(name="Address")
 	private String Address;
 	@Lob
-	@Column(name="p_Image",length = Integer.MAX_VALUE)
+	@Column(name="p_Image", columnDefinition="MEDIUMBLOB")
 	private byte[] provider_Photo;
 	@Column(name="username")
 	private String userName;
@@ -38,18 +42,44 @@ public class RegEntity {
 	@Column(name="regNum")
 	private String regNumber;
 	@Lob
-	@Column(name="carPhoto",length=Integer.MAX_VALUE)
+	@Column(name="carPhoto", columnDefinition="MEDIUMBLOB")
 	private byte[] carPhoto;
 	@Column(name="license_Num")
 	private String lisenceNum;
-	@Column(name="license_Image",length=Integer.MAX_VALUE)
+	@Column(name="license_Image",columnDefinition="MEDIUMBLOB")
 	private byte[] license_Photo;
 	@Column(name="rc_num")
 	private String rcNum;
 	@Lob
-	@Column(name="rc_Photo",length=Integer.MAX_VALUE)
+	@Column(name="rc_Photo",columnDefinition="MEDIUMBLOB")
 	private byte[] rc_Photo;
 	
+	public RegEntity(){
+		
+	}
+	
+	
+	public RegEntity(Integer provider_ID, String provider_Name, String email, long contact, String address,
+			byte[] provider_Photo, String userName, String password, String carType, String carModel, String regNumber,
+			byte[] carPhoto, String lisenceNum, byte[] license_Photo, String rcNum, byte[] rc_Photo) {
+		super();
+		this.provider_ID = provider_ID;
+		this.provider_Name = provider_Name;
+		this.email = email;
+		this.contact = contact;
+		Address = address;
+		this.provider_Photo = provider_Photo;
+		this.userName = userName;
+		this.password = password;
+		this.carType = carType;
+		this.carModel = carModel;
+		this.regNumber = regNumber;
+		this.carPhoto = carPhoto;
+		this.lisenceNum = lisenceNum;
+		this.license_Photo = license_Photo;
+		this.rcNum = rcNum;
+		this.rc_Photo = rc_Photo;
+	}
 	public Integer getProvider_ID() {
 		return provider_ID;
 	}
