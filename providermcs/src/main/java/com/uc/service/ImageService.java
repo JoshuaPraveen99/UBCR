@@ -4,7 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uc.businessbean.IntermediateBean;
+
 import com.uc.businessbean.TrailBean;
 import com.uc.dao.ImageDAO;
 import com.uc.entity.ImageEntity;
