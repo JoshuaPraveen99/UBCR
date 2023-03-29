@@ -2,6 +2,7 @@ package com.uc.businessbean;
 
 
 
+import java.io.IOException;
 import java.sql.Blob;
 
 import javax.validation.constraints.NotNull;
@@ -11,10 +12,25 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"customer_Image"})
 
-public class RegistrationBean {
+public class RegistrationBean {	
 
+    public MultipartFile getCustomer_Image() {
+		return customer_Image;
+	}
+	public void setCustomer_Image(MultipartFile customer_Image) {
+		this.customer_Image = customer_Image;
+		try {
+			byte[] bytearr = customer_Image.getBytes();
+			setPhoto(bytearr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	private Integer C_ID;
 
 	private String C_NAME;
@@ -24,6 +40,7 @@ public class RegistrationBean {
 	private byte[] Photo;
 	private String username;
 	private String password;
+	private MultipartFile customer_Image;
 	public Integer getC_ID() {
 		return C_ID;
 	}

@@ -19,6 +19,14 @@
       rel="stylesheet"
     />
     <link href="./styles.css" rel="stylesheet" />
+    <style>
+    #right{
+    margin-right:700px;
+    }
+    body{
+     background-image: url("UR HOME.jpg");
+    }
+    </style>
     <script src="https://kit.fontawesome.com/c118d74b64.js" crossorigin="anonymous"></script>
   </head>
   <body>

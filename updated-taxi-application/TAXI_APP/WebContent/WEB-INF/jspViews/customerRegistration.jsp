@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<!DOCTYPE html>
 <html>
 <head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registration Page</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 <style>
 .error {
 	color: #ff0000;
@@ -77,30 +74,57 @@ body {
 </style>
 </head>
 <body>
+<body>
 		<h1>Registration Form</h1>
-	<form action="${pageContext.request.contextPath }/RegistrationSuccess.html" method="post" enctype="multipart/form-data">
-		<label for="C_NAME">Customer Name:</label>
-		<input type="text" id="C_NAME" name="C_NAME" required>
+	<form:form modelAttribute="registrationBean" method="POST" enctype="multipart/form-data"
+				action="addNewCustomer.html">
+	<table>
+	
+	<tr>
+		<th>CustomerName:</th>
+		<td><form:input path="C_NAME" required="required"/></td>
+	</tr>
+	
+	<tr>
+		<th>Customer Email:</th>
+		<td><form:input path="email" required="required"/></td>
+	</tr>
+	
+	<tr>
+		<th>Contact:</th>
+		<td><form:input path="Contact" required="required"/></td>
+	</tr>
+	
+	<tr>
+		<th>Address:</th>
+		<td><form:input path="Address" required="required"/></td>
+	</tr>
+	
+	<tr>
+		<td><label for="photo">Customer Photo:</label>
+		    <input type="file" id="Photo" name="customer_Image" accept="image/*" required="required">
+		</td>
+	</tr>
+	
+	<tr>
+		<th>UserName:</th>
+		<td><form:input path="username" required="required"/></td>
+	</tr>
+	
+	<tr>
+		<th>Enter a password:</th>
+		<td><form:input path="password" required="required"/></td>
+	</tr>
+	
+	</table>
+	<input type="submit" value="Register">
+	
+	<spring:hasBindErrors name="registrationBean">
+				<h2>All errors</h2>
+				<form:errors path="*" />
+			</spring:hasBindErrors>
+			
+	</form:form >
 
-		<label for="contact">Contact Number:</label>
-		<input type="text" id="Contact" name="Contact" required>
-
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email" required>
-		
-		<label for="Address">Address:</label>
-		<input type="text" id="Address" name="Address" required>
-
-		<label for="photo">Upload Photo:</label>
-		<input type="file" id="Photo" name="Photo" accept="image/*" required><br>
-
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="username" required>
-
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required>
-
-		<input type="submit" value="Register">
-	</form>
 </body>
 </html>

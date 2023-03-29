@@ -195,7 +195,7 @@ body.open .burger {
   margin-top: 3px;
 }
 #right{
-  margin-right: 400px;
+  margin-right:700px;
 }
 
 .container {
@@ -329,6 +329,9 @@ input[type="text"]:focus{
 }
 #Signup{
   margin-left:-100px ;
+}
+#Login{
+	margin-right:100px;
 }
 
 
