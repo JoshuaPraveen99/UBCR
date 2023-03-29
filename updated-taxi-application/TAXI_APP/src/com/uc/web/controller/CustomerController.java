@@ -52,8 +52,7 @@ public class CustomerController {
 				mv.addObject("message", "Please Enter the valid credentials");
 			}
 		}
-		return mv;*/
-	}
+		return mv;}*/
 	public ModelAndView validateLogin(@Valid @ModelAttribute("loginBean") LoginBean loginBean, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()) {
