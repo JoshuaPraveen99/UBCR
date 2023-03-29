@@ -24,6 +24,7 @@ import com.uc.web.client.CustomerRegistrationClient;
 public class CustomerController {
 	@Autowired CustomerLoginClient ls;
 	@Autowired CustomerRegistrationClient rs;
+	
 	//@Autowired JavaMailSender javaMailSender;
 	RegistrationBean registrationBean= new RegistrationBean();
 
@@ -53,6 +54,7 @@ public class CustomerController {
 			}
 		}
 		return mv;}*/
+	@RequestMapping(value = "/ValidateLogin")
 	public ModelAndView validateLogin(@Valid @ModelAttribute("loginBean") LoginBean loginBean, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()) {
