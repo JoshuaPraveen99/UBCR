@@ -6,11 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 
 @Entity
-@Table(name="providerlogincredentials")
+@Table(name="registration")
 public class LoginEntity {
 	
 	@Id
-	@Column(name="user")
+	@Column(name="username")
 	private String userName;
 	@Column(name="password")
 	private String password;

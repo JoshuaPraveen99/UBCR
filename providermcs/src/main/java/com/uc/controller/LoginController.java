@@ -27,6 +27,7 @@ public class LoginController {
 		LoginBean lbean=new LoginBean();
 		System.out.println(entity);
 		lbean=ls.getLoginDetails(entity);
+		System.out.println(lbean.getPassword());
 		return new ResponseEntity<LoginBean>(lbean, HttpStatus.OK);
     }
 	

@@ -137,7 +137,7 @@ body {
 	
 	<tr>
 		<th>Registration Number:</th>
-		<td><form:input path="regNumber" required="required"/></td>
+		<td><form:input path="regNum" required="required"/></td>
 	</tr>
 	
 	<tr>

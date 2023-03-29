@@ -6,7 +6,6 @@ import java.util.Arrays;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-@SuppressWarnings("unused")
 @JsonIgnoreProperties({"provider_Image","car_Image","license_Image","rc_Image"})
 public class ProviderRegBean {
 
@@ -20,7 +19,7 @@ public class ProviderRegBean {
 		private String password;
 		private String carType;
 		private String carModel;
-		private String regNumber;		
+		private String regNum;		
 		private byte[] carPhoto;
 		private String licenseNum;
 		private byte[] license_Photo;
@@ -173,13 +172,14 @@ public class ProviderRegBean {
 		public void setCarModel(String carModel) {
 			this.carModel = carModel;
 		}
-		public String getRegNumber() {
-			return regNumber;
-		}
-		public void setRegNumber(String regNumber) {
-			this.regNumber = regNumber;
-		}
 		
+		
+		public String getRegNum() {
+			return regNum;
+		}
+		public void setRegNum(String regNum) {
+			this.regNum = regNum;
+		}
 		public String getLicenseNum() {
 			return licenseNum;
 		}
@@ -200,7 +200,7 @@ public class ProviderRegBean {
 			return "ProviderRegBean [provider_ID=" + provider_ID + ", provider_Name=" + provider_Name + ", contact="
 					+ contact + ", email=" + email + ", Address=" + Address + ", provider_Photo="
 					+ Arrays.toString(provider_Photo) + ", userName=" + userName + ", password=" + password
-					+ ", carType=" + carType + ", carModel=" + carModel + ", regNumber=" + regNumber + ", carPhoto="
+					+ ", carType=" + carType + ", carModel=" + carModel + ", regNumber=" + regNum + ", carPhoto="
 					+ Arrays.toString(carPhoto) + ", licenseNum=" + licenseNum + ", license_Photo="
 					+ Arrays.toString(license_Photo) + ", rcNum=" + rcNum + ", rc_Photo=" + Arrays.toString(rc_Photo)
 					+ "]";
