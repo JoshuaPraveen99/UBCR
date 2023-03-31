@@ -15,7 +15,7 @@ public class RegBean {
 	private String carType;
 	private String carModel;
 	private String regNum;
-	private byte[] carPhoto;
+	private byte[] car_Photo;
 	private String licenseNum;
 	private byte[] license_Photo;
 	private String rcNum;
@@ -28,10 +28,10 @@ public class RegBean {
 		this.provider_Photo = provider_Photo;
 	}
 	public byte[] getCarPhoto() {
-		return carPhoto;
+		return car_Photo;
 	}
 	public void setCarPhoto(byte[] carPhoto) {
-		this.carPhoto = carPhoto;
+		this.car_Photo = carPhoto;
 	}
 	public byte[] getLicense_Photo() {
 		return license_Photo;
@@ -126,7 +126,7 @@ public class RegBean {
 		return "RegBean [provider_ID=" + provider_ID + ", provider_Name=" + provider_Name + ", contact=" + contact
 				+ ", email=" + email + ", Address=" + Address + ", provider_Photo=" + Arrays.toString(provider_Photo)
 				+ ", userName=" + userName + ", password=" + password + ", carType=" + carType + ", carModel="
-				+ carModel + ", regNumber=" + regNum + ", carPhoto=" + Arrays.toString(carPhoto) + ", licenseNum="
+				+ carModel + ", regNumber=" + regNum + ", carPhoto=" + Arrays.toString(car_Photo) + ", licenseNum="
 				+ licenseNum + ", license_Photo=" + Arrays.toString(license_Photo) + ", rcNum=" + rcNum + ", rc_Photo="
 				+ Arrays.toString(rc_Photo) + "]";
 	}

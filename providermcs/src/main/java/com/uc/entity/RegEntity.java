@@ -42,8 +42,8 @@ public class RegEntity {
 	@Column(name="reg_num")
 	private String regNum;
 	@Lob
-	@Column(name="carImage", columnDefinition="MEDIUMBLOB")
-	private byte[] carPhoto;
+	@Column(name="car_Photo", columnDefinition="MEDIUMBLOB")
+	private byte[] car_Photo;
 	@Column(name="license_Num")
 	private String licenseNum;
 	@Column(name="license_Image",columnDefinition="MEDIUMBLOB")
@@ -73,7 +73,7 @@ public class RegEntity {
 		this.carType = carType;
 		this.carModel = carModel;
 		this.regNum = regNum;
-		this.carPhoto = carPhoto;
+		this.car_Photo = carPhoto;
 		this.licenseNum = licenseNum;
 		this.license_Photo = license_Photo;
 		this.rcNum = rcNum;
@@ -169,11 +169,11 @@ public class RegEntity {
 	}
 
 	public byte[] getCarPhoto() {
-		return carPhoto;
+		return car_Photo;
 	}
 
 	public void setCarPhoto(byte[] carPhoto) {
-		this.carPhoto = carPhoto;
+		this.car_Photo = carPhoto;
 	}
 
 	public String getLicenseNum() {
