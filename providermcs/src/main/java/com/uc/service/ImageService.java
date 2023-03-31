@@ -17,7 +17,7 @@ public class ImageService {
 		BeanUtils.copyProperties(bean, entity);
 		System.out.println(entity.getImageId());
 		idao.save(entity);
-		return "Image Saved Successfully";
+		return "Image Saved";
 		
 	}
 }
