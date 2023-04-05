@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.uc.entity.PickUpEntity;
 @Repository
-public interface PopulateLocationsDAO extends JpaRepository<PickUpEntity,Integer> {
+public interface PopulatePickUpLocationsDAO extends JpaRepository<PickUpEntity,Integer> {
 	
 	
 

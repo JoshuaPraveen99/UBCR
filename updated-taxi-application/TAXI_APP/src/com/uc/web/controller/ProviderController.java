@@ -1,7 +1,5 @@
 package com.uc.web.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uc.businessbean.DropOffBean;
 import com.uc.businessbean.LoginBean;
 import com.uc.businessbean.PickUpBean;
 import com.uc.businessbean.ProviderLoginBean;
@@ -91,12 +90,23 @@ public class ProviderController {
 	@ModelAttribute("pickUp_Location")
 	public ModelAndView populatePickUp() {
 		ModelAndView mv = new ModelAndView();
-		Map<Integer,String> map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey, PickUpBean::getPickUpLocations));
+		Map<Integer,String> map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey
+				, PickUpBean::getPickUpLocations));
 		mv.addObject(map);
 		System.out.println(map);
 		mv.setViewName("index");
 		return mv;
-		
+	}
+	
+	@RequestMapping(value="check_pickup")
+	@ModelAttribute("DropOff_Location")
+	public ModelAndView populateDropOff() {
+		ModelAndView mv = new ModelAndView();
+		Map<Integer,String> map = ls.populateDropOffLocations().stream().collect(Collectors.toMap(DropOffBean::getKey
+				,DropOffBean::getDropOffLocation));
+		mv.addObject(map);
+		mv.setViewName("index");
+		return mv;
 	}
 	
 	

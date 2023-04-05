@@ -2,8 +2,10 @@ package com.uc.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="dropOff")
 public class DropOffEntity {
 
 	@Column(name="location_Id")
