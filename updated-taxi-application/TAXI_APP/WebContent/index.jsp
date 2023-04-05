@@ -1,104 +1,175 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Navbar 1</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link href="./styles.css" rel="stylesheet" />
-    <style>
-    #right{
-    margin-right:700px;
-    }
-    body{
-     background-image: url("UR HOME.jpg");
-    }
-    </style>
-    <script src="https://kit.fontawesome.com/c118d74b64.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <nav class="navbar">
-      <img src="LOGO.png" width="60px" height="60px">
-      <button onclick="toggleMenu()" class="burger"></button>
-      <button class="button" >Home</button>
-      <div class="dropdowns">
-        <div class="dropdown">
-          <button class="button">
-            Company
-            <img src="chevron.svg" />
-          </button>
-          <div class="dropdown-menu">
-            <button>About Us</button>
-            <button>Blogs</button>
-            <button>Testimonies</button>
-            <button>Contact Us</button>
-          </div>
-        </div>
+<title>Navbar 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+	rel="stylesheet" />
+<link href="./styles.css" rel="stylesheet" />
+<style>
+#right {
+	margin-right: 700px;
+}
+
+body {
+	background-image: url("UR HOME.jpg");
+}
+
+select:focus {
+	outline: 0;
+	border-color: red;
+	font-family: sans-serif;
+}
+
+select {
+	padding: 20px 30px;
+	width: 400px;
+	gap: 2px;
+	border-radius: 10px;
+}
+
+.up {
+	margin-top: -15px;
+}
+/* Set the background color of the dropdown options */
+  #pickUp_Location option {
+    background-color: #f2f2f2;
+    font-size: 18px;
+  }
+
+  /* Set the text color of the dropdown options */
+  #pickUp_Location option:not(:first-child) {
+    color: #333;
+  }
+  
+
+  /* Set the hover background color of the dropdown options */
+  #pickUp_Location option:hover {
+    background-color: #bac2c1;
+  }
+  
+  
+</style>
+<script src="https://kit.fontawesome.com/c118d74b64.js"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<nav class="navbar"> <img src="LOGO.png" width="60px"
+		height="60px">
+	<button onclick="toggleMenu()" class="burger"></button>
+	<button class="button">Home</button>
+	<div class="dropdowns">
+		<div class="dropdown">
+			<button class="button">
+				Company <img src="chevron.svg" />
+			</button>
+			<div class="dropdown-menu">
+				<button>About Us</button>
+				<button>Blogs</button>
+				<button>Testimonies</button>
+				<button>Contact Us</button>
+			</div>
 		</div>
-          <button class="button">
-            Safety
-          </button>
-          <button class="button" id="right">
-            Help
-          </button>
-          <div class="dropdowns">
-        <div class="dropdown">
-          <button class="button">
-            Login
-          </button>
-          <div class="dropdown-menu">
-            <button onClick=redirectToCustomerLoginPage()>Customer Login</button>
-            <button onClick=redirectToProviderLoginPage()>Provider Login</button>
-          </div>
-        </div>
+	</div>
+	<button class="button">Safety</button>
+	<button class="button" id="right">Help</button>
+	<div class="dropdowns">
+		<div class="dropdown">
+			<button class="button">Login</button>
+			<div class="dropdown-menu">
+				<button onClick=redirectToCustomerLoginPage()>Customer
+					Login</button>
+				<button onClick=redirectToProviderLoginPage()>Provider
+					Login</button>
+			</div>
 		</div>
-		<div class="dropdowns">
-         <div class="dropdown">
-          <button class="button" >
-            SignUp
-          </button>
-          <div class="dropdown-menu" id="Signup">
-            <button onClick=redirectToCustomerSignUpPage()>Customer SignUp</button>
-            <button onClick=redirectToProviderSignUpPage()>Provider SignUp</button>
-          </div>
-        </div>
+	</div>
+	<div class="dropdowns">
+		<div class="dropdown">
+			<button class="button">SignUp</button>
+			<div class="dropdown-menu" id="Signup">
+				<button onClick=redirectToCustomerSignUpPage()>Customer
+					SignUp</button>
+				<button onClick=redirectToProviderSignUpPage()>Provider
+					SignUp</button>
+			</div>
 		</div>
-    </nav>
-    <div class="container">
-      <div class="options">
-        <a class="option" id="ride-button" style="text-decoration: none;" href="#"><i class="fa-solid fa-car" id="car" aria-hidden="true"></i><b>Ride</b></a>
-        <a class="option" id="drive-button"  style="text-decoration: none;"  href="#"><i class="fa-solid fa-id-card"></i><b>Drive & Deliver</b></a>
-      </div>
-      <div class="form" id="ride-form">
-          <h1><b>Request a ride now</b></h1><br>
-          <input type="text" placeholder="Enter the pickup location"><br><br>
-          <input type="text" placeholder="Enter the destination"><br><br>
-          <button id="request">Request Now</button>
-          <button id="schedule">Schedule Later</button>
-        <!-- Ride form HTML goes here -->
-      </div>
-      <div class="form" id="drive-form"> 
-        <!-- Drive & Deliver form HTML goes here -->
-        <h1><b>Get in the driver's seat and get paid now</b> </h1><br>
-        <p>Drive on the platform with the largest network of active riders.</p><br>
-        <button id="drive" onClick=redirectToProviderSignUpPage()>Sign up to drive</button><br><br><br>
-        <a href="#" id="learn">Learn more about driving and delivering</a>
-      </div>
-    </div>
-    <script>
+	</div>
+	</nav>
+	<div class="container">
+		<div class="options">
+			<a class="option" id="ride-button" style="text-decoration: none;"
+				href="#"><i class="fa-solid fa-car" id="car" aria-hidden="true"></i><b>Ride</b></a>
+			<a class="option" id="drive-button" style="text-decoration: none;"
+				href="#"><i class="fa-solid fa-id-card"></i><b>Drive &
+					Deliver</b></a>
+		</div>
+		<div class="form" id="ride-form">
+			<h1>
+				<b>Request a ride now</b>
+			</h1>
+			<br>
+			<!-- <input type="text" placeholder="Enter the pickup location"><br><br>
+          <input type="text" placeholder="Enter the destination"><br><br>-->
+
+			<div class="up">
+				<form method="POST" action="/bookRide.html">
+					<select name="pickUp_Location" id="pickUp_Location">
+						<option value="" disabled selected>Select PickUp Location</option>
+						<c:forEach items="${pickUp_Location}" var="location">
+							<option id="pickUp_Dropdown" value="${location}">${location}</option>
+						</c:forEach>
+					</select>
+					<br><br>
+					<br>
+					<select name="DropOff_Location" id="DropOff_Location">
+						<option value="" disabled selected>Select DropOff Location</option>
+						<c:forEach items="${DropOff_Location}" var="location">
+							<option value="${location}">${location}</option>
+						</c:forEach>
+					</select>
+					<br><br>
+					<br>
+					</form>
+			</div>
+					<button type="submit">Request Now</button>
+				
+			
+			<!--  <button id="request" onClick=submit()>Request Now</button>-->
+			<button id="schedule">Schedule Later</button>
+			<!-- Ride form HTML goes here -->
+		</div>
+		<div class="form" id="drive-form">
+			<!-- Drive & Deliver form HTML goes here -->
+			<h1>
+				<b>Get in the driver's seat and get paid now</b>
+			</h1>
+			<br>
+			<p>Drive on the platform with the largest network of active
+				riders.</p>
+			<br>
+			<button id="drive" onClick=redirectToProviderSignUpPage()>Sign
+				up to drive</button>
+			<br>
+			<br>
+			<br> <a href="#" id="learn">Learn more about driving and
+				delivering</a>
+		</div>
+	</div>
+	<script>
       const toggleMenu = () => document.body.classList.toggle("open");
       const rideButton = document.getElementById('ride-button');
 const driveButton = document.getElementById('drive-button');
@@ -135,6 +206,21 @@ function redirectToCustomerSignUpPage() {
 function redirectToProviderSignUpPage() {
     window.location.href = "${pageContext.request.contextPath}/showProviderRegPage.html";
 }
+
+function submit(){
+		  // Get the selected option from the select tag
+		  const pickUp = document.getElementById("pickUp_Location");
+		  const dropOff = document.getElementById("DropOff_Location");
+		  const pickUpOption = select.options[select.selectedIndex].value;
+		  const dropOffOption = select.options[select.selectedIndex].value;
+		  
+		  // Send the selected data to the server using an HTTP request
+		  const xhttp = new XMLHttpRequest();
+		  xhttp.open("POST", "/bookRide.html", true);
+		  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		  xhttp.send(`pickUp=${pickUp}&dropOff=${dropOff}`);
+}
+
     </script>
-  </body>
+</body>
 </html>

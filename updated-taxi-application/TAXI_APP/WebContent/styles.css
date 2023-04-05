@@ -233,7 +233,7 @@ nav a:hover .options a:hover {
   border-radius: 20px;
 
 }
-input[type=text]{
+select{
   padding:20px 30px;
   width: 400px;
   gap:2px;
@@ -263,7 +263,7 @@ input[type=text]{
   color:aquamarine;
   width: 100%;
 }
-input[type="text"]:focus{
+select:focus{
        outline:0;
        border-color:red;
        font-family: sans-serif;

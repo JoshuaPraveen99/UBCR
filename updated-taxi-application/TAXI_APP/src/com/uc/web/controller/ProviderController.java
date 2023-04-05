@@ -1,5 +1,10 @@
 package com.uc.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uc.businessbean.LoginBean;
+import com.uc.businessbean.PickUpBean;
 import com.uc.businessbean.ProviderLoginBean;
 import com.uc.businessbean.ProviderRegBean;
-import com.uc.businessbean.TrailBean;
+import com.uc.service.PopulateLocationService;
 import com.uc.web.client.ProviderLoginClient;
 import com.uc.web.client.ProviderRegClient;
 
@@ -24,6 +30,9 @@ public class ProviderController {
 	
 	@Autowired
 	ProviderRegClient rc;
+	
+	@Autowired
+	PopulateLocationService ls;
 
 	//providing bean for loginPage
 	@RequestMapping(value = "/showProviderLoginPage")
@@ -78,18 +87,17 @@ public class ProviderController {
 		return mv;	
 	}
 	
-	@RequestMapping(value="/trail")
-	public ModelAndView saveImage() {
-		System.out.println("bean sent");
-		return new ModelAndView("ImageTrail","trailBean", new TrailBean());
+	//populating the pickup location
+	@ModelAttribute("pickUp_Location")
+	public ModelAndView populatePickUp() {
+		ModelAndView mv = new ModelAndView();
+		Map<Integer,String> map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey, PickUpBean::getPickUpLocations));
+		mv.addObject(map);
+		System.out.println(map);
+		mv.setViewName("index");
+		return mv;
+		
 	}
 	
-	@RequestMapping(value="/trail/save/image")
-	public ModelAndView saveImage(@ModelAttribute("trailBean")TrailBean bean) {
-		ModelAndView mv = new ModelAndView();
-		TrailBean msg = rc.sendImage(bean);
-		mv.addObject("response", msg);
-		mv.setViewName("ImageTrail");
-		return mv;
-	}
+	
 }
