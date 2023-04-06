@@ -3,13 +3,7 @@ package com.uc.businessbean;
 
 
 import java.io.IOException;
-import java.sql.Blob;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -45,7 +39,7 @@ public class RegistrationBean {
 		return C_ID;
 	}
 	public void setC_ID(Integer C_ID) {
-		C_ID = C_ID;
+		this.C_ID = C_ID;
 	}
 	public String getC_NAME() {
 		return C_NAME;

@@ -4,17 +4,10 @@ public class PickUpBean {
 
 	private int key;
 	private String pickUpLocations;
+
+
 	
-	
-	public PickUpBean() {
-		super();
-	}
-	
-	public PickUpBean(int key, String pickUpLocations) {
-		super();
-		this.key = key;
-		this.pickUpLocations = pickUpLocations;
-	}
+
 
 	public int getKey() {
 		return key;

@@ -12,7 +12,6 @@ import com.uc.entity.LoginEntity;
 public class LoginServiceImpl implements LoginService{
 	@Autowired
 	LoginDao ldao;
-	@SuppressWarnings("null")
 	@Override
 	public LoginBean getLoginDetails(LoginBean lbean) {
         String username=lbean.getUserName();

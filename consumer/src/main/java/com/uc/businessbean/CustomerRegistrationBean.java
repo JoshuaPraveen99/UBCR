@@ -16,7 +16,7 @@ public class CustomerRegistrationBean {
 			return C_ID;
 		}
 		public void setC_ID(Integer C_ID) {
-			C_ID = C_ID;
+			this.C_ID = C_ID;
 		}
 		public String getC_NAME() {
 			return C_NAME;

@@ -22,8 +22,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 		System.out.println(re.getC_NAME());
 		re = rdao.saveRegistrationDetail(re);
 		BeanUtils.copyProperties(re, rbean);
-		
-		
 		return rbean;
 	}
 	

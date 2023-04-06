@@ -1,11 +1,14 @@
 package com.uc.entity;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
+
 
 
 
@@ -45,9 +48,11 @@ public Integer getC_ID() {
 	return C_ID;
 }
 
-public void setC_ID(Integer C_ID) {
-	C_ID = C_ID;
+
+public void setC_ID(Integer c_ID) {
+	C_ID = c_ID;
 }
+
 
 public String getC_NAME() {
 	return C_NAME;

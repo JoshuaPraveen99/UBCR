@@ -8,14 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uc.businessbean.LoginBean;
-import com.uc.businessbean.ProviderRegBean;
 import com.uc.businessbean.RegistrationBean;
-import com.uc.entity.LoginEntity;
 import com.uc.web.client.CustomerLoginClient;
 import com.uc.web.client.CustomerRegistrationClient;
 
