@@ -39,10 +39,12 @@ public class PopulateLocationService {
 		List<DropOffBean> beanList = new ArrayList<DropOffBean>();
 		List<DropOffEntity> entityList = new ArrayList<DropOffEntity>();
 		DropOffBean bean = new DropOffBean();
+		System.out.println("Service works");
 		entityList = ddao.findAll();
 		for(DropOffEntity entity: entityList) {
 			BeanUtils.copyProperties(entity, bean);
 			beanList.add(bean);
+			System.out.println("DAO works");
 		}
 		return beanList;
 	}

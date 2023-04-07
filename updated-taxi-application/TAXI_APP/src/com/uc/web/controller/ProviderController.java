@@ -1,5 +1,7 @@
 package com.uc.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -90,23 +92,30 @@ public class ProviderController {
 	@ModelAttribute("pickUp_Location")
 	public ModelAndView populatePickUp() {
 		ModelAndView mv = new ModelAndView();
+		List<PickUpBean> list = new ArrayList<PickUpBean>();
+		list=ls.populatePickUpLocations();
+		System.out.println(list.toString());
 		Map<Integer,String> map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey
 				, PickUpBean::getPickUpLocations));
 		mv.addObject(map);
 		System.out.println(map);
-		mv.setViewName("index");
+		mv.setViewName("trailjsp");
 		return mv;
 	}
 	
-	@RequestMapping(value="check_pickup")
-	@ModelAttribute("DropOff_Location")
-	public ModelAndView populateDropOff() {
-		ModelAndView mv = new ModelAndView();
-		Map<Integer,String> map = ls.populateDropOffLocations().stream().collect(Collectors.toMap(DropOffBean::getKey
+	@RequestMapping(value="/check_dropOff")
+	//@ModelAttribute("DropOff_Location")
+	public List<DropOffBean> populateDropOff() {
+		//ModelAndView mv = new ModelAndView();
+		List<DropOffBean> list = new ArrayList<DropOffBean>();
+		/*Map<Integer,String> map = ls.populateDropOffLocations().stream().collect(Collectors.toMap(DropOffBean::getKey
 				,DropOffBean::getDropOffLocation));
-		mv.addObject(map);
-		mv.setViewName("index");
-		return mv;
+		*/
+		System.out.println("Controller works");
+		list=ls.populateDropOffLocations();
+		//mv.addObject(map);
+		//mv.setViewName("index");
+		return list;
 	}
 	
 	

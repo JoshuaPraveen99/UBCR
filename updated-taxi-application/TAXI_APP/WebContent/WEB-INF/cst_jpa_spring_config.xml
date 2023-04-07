@@ -15,13 +15,15 @@
         http://www.springframework.org/schema/data/jpa
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
  
-    <bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 
 		<property name="location">
+
 			<value>classpath:com/uc/resources/cst_conn.properties</value> <!-- class path is requried when runing from web app -->
+
 		</property>
 	</bean>
+	
     
     <tx:annotation-driven transaction-manager="txManager"/>
     <!-- To Enable JPA Repository and to refer to the custom transaction Manager name-->

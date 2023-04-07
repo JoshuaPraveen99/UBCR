@@ -21,6 +21,11 @@ public class PickUpBean {
 	public void setPickUpLocations(String pickUpLocations) {
 		this.pickUpLocations = pickUpLocations;
 	}
+	@Override
+	public String toString() {
+		return "PickUpBean [key=" + key + ", pickUpLocations=" + pickUpLocations + "]";
+	}
+	
 	
 	
 	
