@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,12 +95,15 @@ public class ProviderController {
 	//populating the pickup location
 	@ModelAttribute("pickUp_Location")
 	public Map<Integer,String> populatePickUp() {
-		ModelAndView mv = new ModelAndView();
 		List<PickUpBean> list = new ArrayList<PickUpBean>();
 		list=ls.populatePickUpLocations();
+		
 		System.out.println(list.toString());
+		System.out.println("**************");
 		map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey
 				, PickUpBean::getPickUpLocations));
+		System.out.println("!!!!!!!!!!!!!");
+		System.out.println(map.get(3));
 		return map;
 	}
 	
@@ -126,8 +130,9 @@ public class ProviderController {
 		return mv;
 	}
 	
-	@RequestMapping(value="bookRide")
-	public void bookRide(@ModelAttribute("pickUp_Location") TrailBean trailBean) {
+	@RequestMapping(value="/bookRide")
+	public void bookRide(@ModelAttribute("location") TrailBean trailBean, ModelMap model ) {
+		System.out.println("bookRide works!!!");
 		System.out.println("trailBean");
 		trailBean.setPickUp_Location(map.get(trailBean.getKey()));
 		System.out.println(trailBean.getPickUp_Location());

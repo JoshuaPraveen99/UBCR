@@ -12,8 +12,8 @@
 				<form:form method="post" modelAttribute="location" action="${pageContext.request.contextPath}/bookRide.html">
 					<form:select id="pickUp_Location" path="key">
 						<form:option label="--Select PickUp  Location--" value="" />
-						<form:options items="${pickUp_Location}"></form:options>c
-						<input type="Submit" value=Submit/>
+						<form:options items="${pickUp_Location}"></form:options>
+						<input type="Submit" value="Submit"/>
 					</form:select>
 					</form:form>
 </body>
