@@ -118,9 +118,6 @@ form {
 		<div class="register">
 			If a New user? <a href="${pageContext.request.contextPath}/customerRegistration.html">Register</a>
 		</div>
-		<div class="trail">
-			<a href="${pageContext.request.contextPath }/trail.jsp">Trail.jsp</a>
-		</div>
 	</center>
 	
 	</div>

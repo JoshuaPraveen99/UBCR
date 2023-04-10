@@ -1,6 +1,7 @@
 package com.uc.web.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import com.uc.businessbean.LoginBean;
 import com.uc.businessbean.PickUpBean;
 import com.uc.businessbean.ProviderLoginBean;
 import com.uc.businessbean.ProviderRegBean;
+import com.uc.businessbean.TrailBean;
 import com.uc.service.PopulateLocationService;
 import com.uc.web.client.ProviderLoginClient;
 import com.uc.web.client.ProviderRegClient;
@@ -34,6 +36,7 @@ public class ProviderController {
 	
 	@Autowired
 	PopulateLocationService ls;
+	Map<Integer,String> map =  new HashMap<Integer,String>(); 
 
 	//providing bean for loginPage
 	@RequestMapping(value = "/showProviderLoginPage")
@@ -90,17 +93,14 @@ public class ProviderController {
 	
 	//populating the pickup location
 	@ModelAttribute("pickUp_Location")
-	public ModelAndView populatePickUp() {
+	public Map<Integer,String> populatePickUp() {
 		ModelAndView mv = new ModelAndView();
 		List<PickUpBean> list = new ArrayList<PickUpBean>();
 		list=ls.populatePickUpLocations();
 		System.out.println(list.toString());
-		Map<Integer,String> map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey
+		map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey
 				, PickUpBean::getPickUpLocations));
-		mv.addObject(map);
-		System.out.println(map);
-		mv.setViewName("trailjsp");
-		return mv;
+		return map;
 	}
 	
 	@RequestMapping(value="/check_dropOff")
@@ -118,5 +118,20 @@ public class ProviderController {
 		return list;
 	}
 	
+	@RequestMapping(value="/trailCheck")
+	public ModelAndView checkTrail() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("location",new TrailBean());
+		mv.setViewName("Trailjsp");
+		return mv;
+	}
+	
+	@RequestMapping(value="bookRide")
+	public void bookRide(@ModelAttribute("pickUp_Location") TrailBean trailBean) {
+		System.out.println("trailBean");
+		trailBean.setPickUp_Location(map.get(trailBean.getKey()));
+		System.out.println(trailBean.getPickUp_Location());
+		System.out.println("Trail Success");
+	}
 	
 }

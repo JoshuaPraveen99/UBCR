@@ -25,9 +25,10 @@ public class PopulateLocationService {
 	public List<PickUpBean> populatePickUpLocations(){
 		List<PickUpEntity> entityList = new ArrayList<PickUpEntity>();
 		List<PickUpBean> beanList = new ArrayList<PickUpBean>();
-		PickUpBean bean = new PickUpBean();
+		//PickUpBean bean = new PickUpBean();
 		entityList=ldao.findAll();
 		for(PickUpEntity entity: entityList) {
+			PickUpBean bean = new PickUpBean();
 			BeanUtils.copyProperties(entity, bean);
 			beanList.add(bean);
 		}

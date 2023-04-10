@@ -1,38 +1,28 @@
 package com.uc.businessbean;
 
-import java.io.IOException;
-
-import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-@JsonIgnoreProperties("image")
 public class TrailBean {
-	private MultipartFile image;
-	private byte[] imageData;
+
+	private Integer key;
+	private String pickUp_Location;
+	
+	public String getPickUp_Location() {
+		return pickUp_Location;
+	}
+	public void setPickUp_Location(String pickUp_Location) {
+		this.pickUp_Location = pickUp_Location;
+	}
 	
 	
-
-	public byte[] getImageData() {
-		return imageData;
+	public Integer getKey() {
+		return key;
 	}
-
-	public void setImageData(byte[] imageData) {
-		this.imageData = imageData;
+	public void setKey(Integer key) {
+		this.key = key;
 	}
-
-	public MultipartFile getImage() {
-		return image;
+	@Override
+	public String toString() {
+		return "TrailBean [pickUp_Location=" + pickUp_Location + "]";
 	}
-
-	public void setImage(MultipartFile image) {
-		this.image = image;
-		try {
-			byte[] array = image.getBytes();
-			setImageData(array);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	
 }
