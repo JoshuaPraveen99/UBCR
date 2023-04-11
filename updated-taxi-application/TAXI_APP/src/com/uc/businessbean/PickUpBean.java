@@ -5,10 +5,6 @@ public class PickUpBean {
 	private int key;
 	private String pickUpLocations;
 
-
-	
-
-
 	public int getKey() {
 		return key;
 	}

@@ -119,7 +119,7 @@
 		</nav>
 		<div class="content">
 			<h1>Taxi for hire</h1>
-			<a href="#">Book Now!</a>	
+			<a href="${pageContext.request.contextPath }/populateLocations.html">Book Now!</a>	
 		</div>
 	</div>
 </body>

@@ -32,6 +32,7 @@ public class PopulateLocationService {
 			BeanUtils.copyProperties(entity, bean);
 			beanList.add(bean);
 		}
+		System.out.println("populate pickUp DAO works");
 		return beanList;
 		
 	}
@@ -39,14 +40,17 @@ public class PopulateLocationService {
 	public List<DropOffBean> populateDropOffLocations(){
 		List<DropOffBean> beanList = new ArrayList<DropOffBean>();
 		List<DropOffEntity> entityList = new ArrayList<DropOffEntity>();
-		DropOffBean bean = new DropOffBean();
+		
 		System.out.println("Service works");
 		entityList = ddao.findAll();
 		for(DropOffEntity entity: entityList) {
-			BeanUtils.copyProperties(entity, bean);
+			DropOffBean bean = new DropOffBean();
+			BeanUtils.copyProperties(entity,bean);
 			beanList.add(bean);
-			System.out.println("DAO works");
+			
 		}
+		System.out.println("populate dropoff DAO works");
+		System.out.println(beanList.toString());
 		return beanList;
 	}
 

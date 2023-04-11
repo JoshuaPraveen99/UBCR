@@ -126,24 +126,20 @@ select {
           <input type="text" placeholder="Enter the destination"><br><br>-->
 
 			<div class="up">
-				<form method="POST" action="/bookRide.html">
-					<select name="pickUp_Location" id="pickUp_Location">
-						<option value="" disabled selected>Select PickUp Location</option>
-						<c:forEach items="${pickUp_Location}" var="location">
-							<option id="pickUp_Dropdown" value="${location}">${location}</option>
-						</c:forEach>
-					</select>
+				<form:form method="POST" modelAttribute="formlocations" action="${pageContext.request.contextPath}/bookRide.html">
+					<form:select id="pickUp_Location" path="pickUpKey">
+						<form:option label="--Select PickUp  Location--" value=""/>
+						<form:options items="${pickUp_Location}"></form:options>
+					</form:select>
 					<br><br>
 					<br>
-					<select name="DropOff_Location" id="DropOff_Location">
-						<option value="" disabled selected>Select DropOff Location</option>
-						<c:forEach items="${DropOff_Location}" var="location">
-							<option value="${location}">${location}</option>
-						</c:forEach>
-					</select>
+					<form:select id="DropOff_Location" path="dropOffKey">
+						<form:option label="--Select DropOff  Location--" value=""/>
+						<form:options items="${dropOff_Location}"></form:options>
+					</form:select>
 					<br><br>
 					<br>
-					</form>
+					</form:form>
 			</div>
 					<button type="submit">Request Now</button>
 				

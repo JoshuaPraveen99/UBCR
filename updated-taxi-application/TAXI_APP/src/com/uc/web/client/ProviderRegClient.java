@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.uc.businessbean.ProviderRegBean;
-import com.uc.businessbean.TrailBean;
 
 @Service
 public class ProviderRegClient {
@@ -41,11 +40,4 @@ public class ProviderRegClient {
 		return dummy;
 	}
 	
-	public TrailBean sendImage(TrailBean bean) {
-		HttpHeaders header = new HttpHeaders();
-		header.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<TrailBean> requestObj = new HttpEntity<TrailBean>(bean,header);
-		ResponseEntity<TrailBean> response = restTemplate.postForEntity(serviceUrl+photoUrl, requestObj, TrailBean.class);
-		return response.getBody();
-	}
 }

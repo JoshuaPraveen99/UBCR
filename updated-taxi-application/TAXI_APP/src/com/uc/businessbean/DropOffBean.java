@@ -17,6 +17,10 @@ public class DropOffBean {
 	public void setDropOffLocation(String dropOffLocation) {
 		this.dropOffLocation = dropOffLocation;
 	}
+	@Override
+	public String toString() {
+		return "DropOffBean [key=" + key + ", dropOffLocation=" + dropOffLocation + "]";
+	}
 	
 	
 

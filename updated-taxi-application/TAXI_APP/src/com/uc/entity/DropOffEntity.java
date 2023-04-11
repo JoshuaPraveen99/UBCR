@@ -16,19 +16,20 @@ public class DropOffEntity {
 	@Column(name="location_id")
 	private int key;
 	@Column(name="location")
-	private String dropOffLocations;
+	private String dropOffLocation;
 	public int getKey() {
 		return key;
 	}
 	public void setKey(int key) {
 		this.key = key;
 	}
-	public String getDropOffLocations() {
-		return dropOffLocations;
+	public String getDropOffLocation() {
+		return dropOffLocation;
 	}
-	public void setDropOffLocations(String dropOffLocations) {
-		this.dropOffLocations = dropOffLocations;
+	public void setDropOffLocation(String dropOffLocation) {
+		this.dropOffLocation = dropOffLocation;
 	}
+	
 	
 	
 }

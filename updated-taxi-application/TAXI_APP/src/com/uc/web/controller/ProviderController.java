@@ -1,28 +1,17 @@
 package com.uc.web.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.uc.businessbean.DropOffBean;
 import com.uc.businessbean.LoginBean;
-import com.uc.businessbean.PickUpBean;
 import com.uc.businessbean.ProviderLoginBean;
 import com.uc.businessbean.ProviderRegBean;
-import com.uc.businessbean.TrailBean;
-import com.uc.service.PopulateLocationService;
 import com.uc.web.client.ProviderLoginClient;
 import com.uc.web.client.ProviderRegClient;
 
@@ -34,10 +23,7 @@ public class ProviderController {
 	
 	@Autowired
 	ProviderRegClient rc;
-	
-	@Autowired
-	PopulateLocationService ls;
-	Map<Integer,String> map =  new HashMap<Integer,String>(); 
+	 
 
 	//providing bean for loginPage
 	@RequestMapping(value = "/showProviderLoginPage")
@@ -92,51 +78,6 @@ public class ProviderController {
 		return mv;	
 	}
 	
-	//populating the pickup location
-	@ModelAttribute("pickUp_Location")
-	public Map<Integer,String> populatePickUp() {
-		List<PickUpBean> list = new ArrayList<PickUpBean>();
-		list=ls.populatePickUpLocations();
-		
-		System.out.println(list.toString());
-		System.out.println("**************");
-		map=ls.populatePickUpLocations().stream().collect(Collectors.toMap(PickUpBean::getKey
-				, PickUpBean::getPickUpLocations));
-		System.out.println("!!!!!!!!!!!!!");
-		System.out.println(map.get(3));
-		return map;
-	}
 	
-	@RequestMapping(value="/check_dropOff")
-	//@ModelAttribute("DropOff_Location")
-	public List<DropOffBean> populateDropOff() {
-		//ModelAndView mv = new ModelAndView();
-		List<DropOffBean> list = new ArrayList<DropOffBean>();
-		/*Map<Integer,String> map = ls.populateDropOffLocations().stream().collect(Collectors.toMap(DropOffBean::getKey
-				,DropOffBean::getDropOffLocation));
-		*/
-		System.out.println("Controller works");
-		list=ls.populateDropOffLocations();
-		//mv.addObject(map);
-		//mv.setViewName("index");
-		return list;
-	}
-	
-	@RequestMapping(value="/trailCheck")
-	public ModelAndView checkTrail() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("location",new TrailBean());
-		mv.setViewName("Trailjsp");
-		return mv;
-	}
-	
-	@RequestMapping(value="/bookRide")
-	public void bookRide(@ModelAttribute("location") TrailBean trailBean) {
-		System.out.println("bookRide works!!!");
-		System.out.println("trailBean");
-		trailBean.setPickUp_Location(map.get(trailBean.getKey()));
-		System.out.println(trailBean.getPickUp_Location());
-		System.out.println("Trail Success");
-	}
 	
 }
