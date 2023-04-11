@@ -9,9 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Navbar 1</title>
+<title>Search for a ride</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
 	rel="stylesheet" />
@@ -207,19 +207,7 @@ function redirectToProviderSignUpPage() {
     window.location.href = "${pageContext.request.contextPath}/showProviderRegPage.html";
 }
 
-function submit(){
-		  // Get the selected option from the select tag
-		  const pickUp = document.getElementById("pickUp_Location");
-		  const dropOff = document.getElementById("DropOff_Location");
-		  const pickUpOption = select.options[select.selectedIndex].value;
-		  const dropOffOption = select.options[select.selectedIndex].value;
-		  
-		  // Send the selected data to the server using an HTTP request
-		  const xhttp = new XMLHttpRequest();
-		  xhttp.open("POST", "/bookRide.html", true);
-		  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		  xhttp.send(`pickUp=${pickUp}&dropOff=${dropOff}`);
-}
+
 
     </script>
 </body>

@@ -131,7 +131,7 @@ public class ProviderController {
 	}
 	
 	@RequestMapping(value="/bookRide")
-	public void bookRide(@ModelAttribute("location") TrailBean trailBean, ModelMap model ) {
+	public void bookRide(@ModelAttribute("location") TrailBean trailBean) {
 		System.out.println("bookRide works!!!");
 		System.out.println("trailBean");
 		trailBean.setPickUp_Location(map.get(trailBean.getKey()));
