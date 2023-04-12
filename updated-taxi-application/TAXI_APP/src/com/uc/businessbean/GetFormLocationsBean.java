@@ -31,6 +31,11 @@ public class GetFormLocationsBean {
 	public void setDropOffLocation(String dropOffLocation) {
 		this.dropOffLocation = dropOffLocation;
 	}
+	@Override
+	public String toString() {
+		return "GetFormLocationsBean [pickUpKey=" + pickUpKey + ", dropOffKey=" + dropOffKey + ", pickUpLocation="
+				+ pickUpLocation + ", dropOffLocation=" + dropOffLocation + "]";
+	}
 	
 	
 	

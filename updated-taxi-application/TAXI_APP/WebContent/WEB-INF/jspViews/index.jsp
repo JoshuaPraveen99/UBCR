@@ -126,22 +126,23 @@ select {
           <input type="text" placeholder="Enter the destination"><br><br>-->
 
 			<div class="up">
-				<form:form method="POST" modelAttribute="formlocations" action="${pageContext.request.contextPath}/bookRide.html">
+				<form:form id="LocationForm" method="POST" modelAttribute="formlocations" action="${pageContext.request.contextPath}/bookRide.html">
 					<form:select id="pickUp_Location" path="pickUpKey">
-						<form:option label="--Select PickUp  Location--" value=""/>
+						<form:option label="--Select PickUp  Location--" value="-1"/>
 						<form:options items="${pickUp_Location}"></form:options>
 					</form:select>
 					<br><br>
 					<br>
 					<form:select id="DropOff_Location" path="dropOffKey">
-						<form:option label="--Select DropOff  Location--" value=""/>
+						<form:option label="--Select DropOff  Location--" value="-1"/>
 						<form:options items="${dropOff_Location}"></form:options>
 					</form:select>
 					<br><br>
 					<br>
 					</form:form>
+					
 			</div>
-					<button type="submit">Request Now</button>
+					<button type="submit" id="RequestButton">Request Now</button>
 				
 			
 			<!--  <button id="request" onClick=submit()>Request Now</button>-->
@@ -171,6 +172,15 @@ select {
 const driveButton = document.getElementById('drive-button');
 const rideForm = document.getElementById('ride-form');
 const driveForm = document.getElementById('drive-form');
+
+// To submit the form
+//-------------------
+const form = document.getElementById("LocationForm");
+const RequestNowButton = document.getElementById("RequestButton");
+RequestNowButton.addEventListener("click",function(){
+	form.submit();
+});
+
 
 window.onload=function(){
   var form=document.getElementById('ride-form');
@@ -202,6 +212,7 @@ function redirectToCustomerSignUpPage() {
 function redirectToProviderSignUpPage() {
     window.location.href = "${pageContext.request.contextPath}/showProviderRegPage.html";
 }
+
 
 
 
