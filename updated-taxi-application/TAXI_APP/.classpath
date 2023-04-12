@@ -3,21 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/prawin.arulmurugan/Downloads/spring-web-4.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/prawin.arulmurugan/Downloads/jackson-databind-2.14.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/prawin.arulmurugan/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0.jar" sourcepath="C:/Users/prawin.arulmurugan/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.1.0/jakarta.persistence-api-3.1.0-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.archivename" value="jakarta.persistence-api-3.1.0.jar"/>
-			<attribute name="maven.groupId" value="jakarta.persistence"/>
-			<attribute name="maven.artifactId" value="jakarta.persistence-api"/>
-			<attribute name="maven.version" value="3.1.0"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/prawin.arulmurugan/Documents/GitHub/UBCR/updated-taxi-application/TAXI_APP/WebContent/WEB-INF/lib/javax.servlet-api-3.1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

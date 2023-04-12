@@ -100,7 +100,7 @@ public class RideController {
 			LocalTime time = LocalTime.now();
 		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
 		    double pickupTime = Double.parseDouble(time.format(formatter));
-		    Taxis=rs.bookaRide(pickup,destination,pickupTime);
+		    rs.bookaRide(pickup,destination,pickupTime);
 		    System.out.println(Taxis);
 			System.out.println("Trail Success");
 		}

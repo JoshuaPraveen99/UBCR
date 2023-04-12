@@ -12,20 +12,20 @@ public class Taxi {
 	public void setTaxi_count(int taxi_count) {
 		Taxi.taxi_count = taxi_count;
 	}
-	 int taxi_id;
-	 boolean booked;
+	public int taxi_id;
+	 public boolean booked;
 	 public String currentSpot;
-	 String nextSpot;
+	 public String nextSpot;
 	 public double freeTime;
-	 int totalEarnings;
-	 List<String>trips;
-	 int payment;
-	 String carType;
-	 String driverName;
-	 String carModel;
-	 String contact;
-	 String vehicleNumber;
-	 double estimated_time;
+	 public int totalEarnings;
+	 public List<String>trips;
+	 public int payment;
+	 public String carType;
+	 public String driverName;
+	 public String carModel;
+	 public String contact;
+	 public String vehicleNumber;
+	 public double estimated_time;
 public String getCarType() {
 		return carType;
 	}
