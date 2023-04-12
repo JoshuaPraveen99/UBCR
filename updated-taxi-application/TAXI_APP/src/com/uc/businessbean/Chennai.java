@@ -1,4 +1,4 @@
-package taxiapplication;
+package com.uc.businessbean;
 
 public class Chennai {
 	double chennaiLat = 13.0827;

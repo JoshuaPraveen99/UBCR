@@ -1,4 +1,4 @@
-package taxiapplication;
+package com.uc.businessbean;
 
 public class Avadi {
 	double avadiLat = 13.1146;

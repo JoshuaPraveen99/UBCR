@@ -1,5 +1,7 @@
 package com.uc.web.controller;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,15 +17,22 @@ import org.springframework.web.servlet.ModelAndView;
 import com.uc.businessbean.DropOffBean;
 import com.uc.businessbean.GetFormLocationsBean;
 import com.uc.businessbean.PickUpBean;
+import com.uc.businessbean.Taxi;
 import com.uc.service.PopulateLocationService;
+import com.uc.service.RideBookingService;
 
 @Controller
 public class RideController {
+	List<Taxi>Taxis=new ArrayList<>();
 	
 	@Autowired
 	PopulateLocationService ls;
+	@Autowired
+	RideBookingService rs;
 	Map<Integer,String> pickUpmap =  new HashMap<Integer,String>();
 	Map<Integer,String> dropOffmap =  new HashMap<Integer,String>();
+	String pickup;
+	String destination;
 
 	//populating the pickup location
 		@ModelAttribute("pickUp_Location")
@@ -86,6 +95,13 @@ public class RideController {
 			formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
 			formLocationsBean.setDropOffLocation(dropOffmap.get(formLocationsBean.getDropOffKey()));
 			System.out.println(formLocationsBean);
+			pickup=formLocationsBean.getPickUpLocation();
+			destination=formLocationsBean.getDropOffLocation();
+			LocalTime time = LocalTime.now();
+		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
+		    double pickupTime = Double.parseDouble(time.format(formatter));
+		    Taxis=rs.bookaRide(pickup,destination,pickupTime);
+		    System.out.println(Taxis);
 			System.out.println("Trail Success");
 		}
 }

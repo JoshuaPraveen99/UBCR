@@ -1,4 +1,4 @@
-package taxiapplication;
+package com.uc.businessbean;
 
 import java.math.BigInteger;
 import java.util.List;

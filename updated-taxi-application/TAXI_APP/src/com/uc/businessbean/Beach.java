@@ -1,4 +1,4 @@
-package taxiapplication;
+package com.uc.businessbean;
 
 public class Beach {
 	double beachLat = 13.0474;

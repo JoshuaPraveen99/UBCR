@@ -1,4 +1,4 @@
-package taxiapplication;
+package com.uc.businessbean;
 
 public class Chromepet {
 	double chrompetLat = 12.9529;

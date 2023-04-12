@@ -14,9 +14,9 @@ public class Taxi {
 	}
 	 int taxi_id;
 	 boolean booked;
-	 String currentSpot;
+	 public String currentSpot;
 	 String nextSpot;
-	 double freeTime;
+	 public double freeTime;
 	 int totalEarnings;
 	 List<String>trips;
 	 int payment;
@@ -124,15 +124,13 @@ public String getCarType() {
         }
         System.out.println("--------------------------------------------------------------------------------------");
     }
-    public Taxi(String carType, String currentSpot,String name,String carModel,String vehicleNumber,String contact)
+    public Taxi(String carType, String currentSpot,String name,String carModel,String vehicleNumber,String contact, double freeTime,int totalEarnings,int taxi_id,boolean booked)
     {
-        booked = false;
-        this.currentSpot = currentSpot;//start point Chennai
-        freeTime = 6;//example 6 AM
-        totalEarnings = 0;
-        trips = new ArrayList<String>();
-        taxi_count = taxi_count + 1; // everytime new taxi is created a new id will be assigned
-        taxi_id = taxi_count;
+        this.booked = booked;
+        this.currentSpot = currentSpot;//start point 
+        this.freeTime = freeTime;
+        this.totalEarnings = totalEarnings;
+        this.taxi_id = taxi_id;
         this.carType=carType;
         this.driverName=name;
         this.contact=contact;
