@@ -70,6 +70,7 @@
 
 	.content a{
 		text-decoration: none;
+		backdrop-filter: blur(10px);
 		display: inline-block;
 		color: whitesmoke;
 		font-size: 18px;

@@ -30,7 +30,7 @@ body {
 
 select:focus {
 	outline: 0;
-	border-color: red;
+	border-color: green;
 	font-family: sans-serif;
 }
 
@@ -46,18 +46,40 @@ select {
 }
 /* Set the background color of the dropdown options */
   #pickUp_Location option {
-    background-color: #f2f2f2;
-    font-size: 18px;
+    
+    font-size: 17px;
   }
 
   /* Set the text color of the dropdown options */
   #pickUp_Location option:not(:first-child) {
-    color: #333;
+  
+    background:rgba(0,0,0,0.3);
+    color: black;
+    backdrop-filter: blur(50px);
   }
   
 
   /* Set the hover background color of the dropdown options */
   #pickUp_Location option:hover {
+    background-color: #bac2c1;
+  }
+  
+  #DropOff_Location option {
+    background:rgba(0,0,0,0.3);
+    font-size: 17px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Set the text color of the dropdown options */
+  #DropOff_Location option:not(:first-child) {
+    
+    color: black;
+    
+  }
+  
+
+  /* Set the hover background color of the dropdown options */
+  #DropOff_Location option:hover {
     background-color: #bac2c1;
   }
   
@@ -129,7 +151,7 @@ select {
 				<form:form id="LocationForm" method="POST" modelAttribute="formlocations" action="${pageContext.request.contextPath}/bookRide.html">
 					<form:select id="pickUp_Location" path="pickUpKey">
 						<form:option label="--Select PickUp  Location--" value="-1"/>
-						<form:options items="${pickUp_Location}"></form:options>
+						<form:options id="formOptions" items="${pickUp_Location}"></form:options>
 					</form:select>
 					<br><br>
 					<br>
