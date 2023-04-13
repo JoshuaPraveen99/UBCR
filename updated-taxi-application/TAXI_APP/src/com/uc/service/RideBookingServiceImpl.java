@@ -42,14 +42,15 @@ public class RideBookingServiceImpl implements RideBookingService{
 	
 	
 	
-	public static void bookTaxi(int id,String pickup,String destination,double pickupTime,List<Taxi>freeTaxis) {	
+	public void bookTaxi(int id,String pickup,String destination,double pickupTime,List<Taxi>freeTaxis) {	
 		int min=999;
 		int distancebetweenpickUpandDrop=0;
 		int earning=0;
-		double nextFreeTime=0;
+		double nextFreeTime=0.0;
 		String nextSpot="";
 		Taxi bookedTaxi=null;
 		String tripDetail="";
+		int totalEarnings=0;
 		for(Taxi t:freeTaxis) {
 			//System.out.println(t.currentSpot);
 			//System.out.println(pickup);
@@ -87,6 +88,9 @@ public class RideBookingServiceImpl implements RideBookingService{
 		    
 		    nextSpot=destination;
 		    
+		    totalEarnings=earning+t.totalEarnings;
+		    System.out.println(nextFreeTime+" "+nextSpot+" "+totalEarnings+" "+id);
+		    
 		    
 		    tripDetail= "pickup: "+pickup+" destination: "+destination+" pickUpTime: "+pickupTime+" dropTime: "+dropTime+" earning: "+earning;
 		    
@@ -95,6 +99,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 			
 		}
 		//bookedTaxi.setDetails(true,nextSpot,nextFreeTime,bookedTaxi.totalEarnings+earning,tripDetail);
+		tdao.updateUser(nextSpot,nextFreeTime,totalEarnings,id);
 		
 		System.out.println("Taxi "+bookedTaxi.taxi_id+ " booked.\n");
 		System.out.println("TAXI DETAILS: \n"+"DRIVER NAME: "+bookedTaxi.driverName+" VEHICLE NUMBER: "+bookedTaxi.vehicleNumber+" CAR MODEL: "+bookedTaxi.carModel+" CONTACT: "+bookedTaxi.contact+"\n");
@@ -225,18 +230,19 @@ public class RideBookingServiceImpl implements RideBookingService{
 		
 		for(TaxiEntity t:taxiEntity) {
 			if(t.getCarType().equals("Sedan")) {
-				Taxi taxi=new Sedan(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id(),t.isBooked());
+				Taxi taxi=new Sedan(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id());
 				taxis.add(taxi);
 			}
 			else if(t.getCarType().equals("SUV")){
-				Taxi taxi=new SUV(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id(),t.isBooked());
+				Taxi taxi=new SUV(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id());
 				taxis.add(taxi);
 			}
 			else {
-				Taxi taxi=new Hatchback(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id(),t.isBooked());
+				Taxi taxi=new Hatchback(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id());
 				taxis.add(taxi);
 			}
 		}
+
 		
 		
 		
@@ -298,6 +304,8 @@ public class RideBookingServiceImpl implements RideBookingService{
 		            System.out.println(freetaxis);
 			        //get free Taxi nearest to us
 			        bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
+			        taxis.clear();
+			        freeTaxis.clear();
 				}
 				
 				
@@ -343,6 +351,8 @@ public class RideBookingServiceImpl implements RideBookingService{
         System.out.println(freetaxis);
         //get free Taxi nearest to us
         bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
+        taxis.clear();
+        freeTaxis.clear();
 		
 		
 	}

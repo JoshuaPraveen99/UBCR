@@ -7,8 +7,8 @@ public class SUV extends Taxi {
 
 	
    public SUV(String carType, String currentSpot, String name, String carModel, String vehicleNumber, String contact,
-			double freeTime, int totalEarnings, int taxi_id, boolean booked) {
-		super(carType, currentSpot, name, carModel, vehicleNumber, contact, freeTime, totalEarnings, taxi_id, booked);
+			double freeTime, int totalEarnings, int taxi_id) {
+		super(carType, currentSpot, name, carModel, vehicleNumber, contact, freeTime, totalEarnings, taxi_id);
 		// TODO Auto-generated constructor stub
 	}
 

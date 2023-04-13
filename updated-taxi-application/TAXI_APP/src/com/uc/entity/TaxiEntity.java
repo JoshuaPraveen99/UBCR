@@ -17,10 +17,7 @@ public class TaxiEntity {
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 @Column(name="taxi_id")
 	 int taxi_id;
-	 
-	 @Column(name="booked")
-	 boolean booked;
-	 
+	
 	 @Column(name="currentSpot")
 	 String currentSpot;
 	 
@@ -33,8 +30,7 @@ public class TaxiEntity {
 	 @Column(name="totalEarnings")
 	 int totalEarnings;
 	 
-	 @Column(name="payment")
-	 int payment;
+	 
 	 
 	 @Column(name="carType")
 	 String carType;
@@ -42,7 +38,7 @@ public class TaxiEntity {
 	 @Column(name="driverName")
 	 String driverName;
 	 
-	 @Column(name="location")
+	 @Column(name="carModel")
 	 String carModel;
 	 
 	 @Column(name="contact")
@@ -62,13 +58,7 @@ public class TaxiEntity {
 		this.taxi_id = taxi_id;
 	}
 
-	public boolean isBooked() {
-		return booked;
-	}
 
-	public void setBooked(boolean booked) {
-		this.booked = booked;
-	}
 
 	public String getCurrentSpot() {
 		return currentSpot;
@@ -102,13 +92,6 @@ public class TaxiEntity {
 		this.totalEarnings = totalEarnings;
 	}
 
-	public int getPayment() {
-		return payment;
-	}
-
-	public void setPayment(int payment) {
-		this.payment = payment;
-	}
 
 	public String getCarType() {
 		return carType;

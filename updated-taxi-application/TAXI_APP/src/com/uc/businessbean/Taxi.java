@@ -13,7 +13,6 @@ public class Taxi {
 		Taxi.taxi_count = taxi_count;
 	}
 	public int taxi_id;
-	 public boolean booked;
 	 public String currentSpot;
 	 public String nextSpot;
 	 public double freeTime;
@@ -35,10 +34,9 @@ public String getCarType() {
 	public double getestimated_time(){
 		return estimated_time;
 	}
-	public Taxi(int taxi_id, boolean booked, String currentSpot, int freeTime, int totalEarnings, List<String> trips) {
+	public Taxi(int taxi_id, String currentSpot, int freeTime, int totalEarnings, List<String> trips) {
 		super();
 		this.taxi_id = taxi_id;
-		this.booked = booked;
 		this.currentSpot = currentSpot;
 		this.freeTime = freeTime;
 		this.totalEarnings = totalEarnings;
@@ -49,12 +47,6 @@ public String getCarType() {
 	}
 	public void setTaxi_id(int taxi_id) {
 		this.taxi_id = taxi_id;
-	}
-	public boolean isBooked() {
-		return booked;
-	}
-	public void setBooked(boolean booked) {
-		this.booked = booked;
 	}
 	public String getCurrentSpot() {
 		return currentSpot;
@@ -91,8 +83,7 @@ public String getCarType() {
 		
 		return payment;
 	}
-	public void setDetails(boolean b, String nextSpot, double nextFreeTime, int i, String tripDetail) {
-		this.booked=b;
+	public void setDetails( String nextSpot, double nextFreeTime, int i, String tripDetail) {
 		this.currentSpot=nextSpot;
 		this.freeTime=nextFreeTime;
 		this.totalEarnings=i;
@@ -102,7 +93,7 @@ public String getCarType() {
 	}
     @Override
 	public String toString() {
-		return "Taxi [taxi_id=" + taxi_id + ", booked=" + booked + ", currentSpot=" + currentSpot + ", nextSpot="
+		return "Taxi [taxi_id=" + taxi_id +  ", currentSpot=" + currentSpot + ", nextSpot="
 				+ nextSpot + ", freeTime=" + freeTime + ", totalEarnings=" + totalEarnings + ", trips=" + trips
 				+ ", payment=" + payment + ", carType=" + carType + ", driverName=" + driverName + ", carModel="
 				+ carModel + ", contact=" + contact + ", vehicleNumber=" + vehicleNumber + ", estimated_time="
@@ -124,9 +115,8 @@ public String getCarType() {
         }
         System.out.println("--------------------------------------------------------------------------------------");
     }
-    public Taxi(String carType, String currentSpot,String name,String carModel,String vehicleNumber,String contact, double freeTime,int totalEarnings,int taxi_id,boolean booked)
+    public Taxi(String carType, String currentSpot,String name,String carModel,String vehicleNumber,String contact, double freeTime,int totalEarnings,int taxi_id)
     {
-        this.booked = booked;
         this.currentSpot = currentSpot;//start point 
         this.freeTime = freeTime;
         this.totalEarnings = totalEarnings;
