@@ -6,6 +6,6 @@ import com.uc.businessbean.Taxi;
 
 public interface RideBookingService {
 
-	public void  bookaRide(String pickup, String destination, double pickupTime);
+	public Taxi bookaRide(String pickup, String destination, double pickupTime);
 
 }

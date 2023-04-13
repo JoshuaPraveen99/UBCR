@@ -115,7 +115,46 @@ public String getCarType() {
         }
         System.out.println("--------------------------------------------------------------------------------------");
     }
-    public Taxi(String carType, String currentSpot,String name,String carModel,String vehicleNumber,String contact, double freeTime,int totalEarnings,int taxi_id)
+    public int getPayment() {
+		return payment;
+	}
+	public void setPayment(int payment) {
+		this.payment = payment;
+	}
+	public String getDriverName() {
+		return driverName;
+	}
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
+	public String getCarModel() {
+		return carModel;
+	}
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	public String getVehicleNumber() {
+		return vehicleNumber;
+	}
+	public void setVehicleNumber(String vehicleNumber) {
+		this.vehicleNumber = vehicleNumber;
+	}
+	public double getEstimated_time() {
+		return estimated_time;
+	}
+	public void setEstimated_time(double estimated_time) {
+		this.estimated_time = estimated_time;
+	}
+	public void setFreeTime(double freeTime) {
+		this.freeTime = freeTime;
+	}
+	public Taxi(String carType, String currentSpot,String name,String carModel,String vehicleNumber,String contact, double freeTime,int totalEarnings,int taxi_id)
     {
         this.currentSpot = currentSpot;//start point 
         this.freeTime = freeTime;

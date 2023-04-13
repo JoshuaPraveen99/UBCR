@@ -89,7 +89,8 @@ public class RideController {
 		}
 		
 		@RequestMapping(value="/bookRide")
-		public void bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean) {
+		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean) {
+			ModelAndView mv=new ModelAndView();
 			System.out.println("bookRide works!!!");
 			System.out.println(formLocationsBean);
 			formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
@@ -100,8 +101,12 @@ public class RideController {
 			LocalTime time = LocalTime.now();
 		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
 		    double pickupTime = Double.parseDouble(time.format(formatter));
-		    rs.bookaRide(pickup,destination,pickupTime);
+		    Taxi finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
 		    System.out.println(Taxis);
+		    System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
 			System.out.println("Trail Success");
+			mv.addObject("finalTaxi",finalTaxi);
+			mv.setViewName("RideSelect");
+			return mv;
 		}
 }

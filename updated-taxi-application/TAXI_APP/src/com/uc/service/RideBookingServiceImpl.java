@@ -42,7 +42,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 	
 	
 	
-	public void bookTaxi(int id,String pickup,String destination,double pickupTime,List<Taxi>freeTaxis) {	
+	public Taxi bookTaxi(int id,String pickup,String destination,double pickupTime,List<Taxi>freeTaxis) {	
 		int min=999;
 		int distancebetweenpickUpandDrop=0;
 		int earning=0;
@@ -101,8 +101,9 @@ public class RideBookingServiceImpl implements RideBookingService{
 		//bookedTaxi.setDetails(true,nextSpot,nextFreeTime,bookedTaxi.totalEarnings+earning,tripDetail);
 		tdao.updateUser(nextSpot,nextFreeTime,totalEarnings,id);
 		
-		System.out.println("Taxi "+bookedTaxi.taxi_id+ " booked.\n");
-		System.out.println("TAXI DETAILS: \n"+"DRIVER NAME: "+bookedTaxi.driverName+" VEHICLE NUMBER: "+bookedTaxi.vehicleNumber+" CAR MODEL: "+bookedTaxi.carModel+" CONTACT: "+bookedTaxi.contact+"\n");
+		//System.out.println("Taxi "+bookedTaxi.taxi_id+ " booked.\n");
+		//System.out.println("TAXI DETAILS: \n"+"DRIVER NAME: "+bookedTaxi.driverName+" VEHICLE NUMBER: "+bookedTaxi.vehicleNumber+" CAR MODEL: "+bookedTaxi.carModel+" CONTACT: "+bookedTaxi.contact+"\n");
+		return bookedTaxi;
 	}
 	 
 	public static List<Taxi> getFreeTaxis(List<Taxi> taxis, double pickupTime, String pickupPoint){
@@ -185,7 +186,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 	    }
 	
 	@Override
-	public void bookaRide(String pickup, String destination, double pickupTime) {
+	public Taxi bookaRide(String pickup, String destination, double pickupTime) {
 		
 		List<TaxiEntity>taxiEntity=new ArrayList<>();
 		taxiEntity=tdao.findAll();
@@ -311,7 +312,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 				
 				else {		
                    System.out.println("No Taxi can be alloted. Exitting");
-                   return;
+                   
 				}
         }    
 
@@ -350,11 +351,13 @@ public class RideBookingServiceImpl implements RideBookingService{
         }
         System.out.println(freetaxis);
         //get free Taxi nearest to us
-        bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
+        Taxi finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
         taxis.clear();
         freeTaxis.clear();
+		return finalTaxi;
 		
 		
 	}
+        
 
 }
