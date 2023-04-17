@@ -38,6 +38,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 	private static final double EARTH_RADIUS = 6371; // Earth's radius in kilometers
 	List<Taxi>freeTaxis=new ArrayList<>();
 	List<Taxi>freetaxis=new ArrayList<>();
+	Taxi finalTaxi=null;
 	Scanner sc=new Scanner(System.in);
 	
 	
@@ -304,9 +305,10 @@ public class RideBookingServiceImpl implements RideBookingService{
 			        }
 		            System.out.println(freetaxis);
 			        //get free Taxi nearest to us
-			        bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
+			        finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
 			        taxis.clear();
 			        freeTaxis.clear();
+			        
 				}
 				
 				
@@ -315,7 +317,7 @@ public class RideBookingServiceImpl implements RideBookingService{
                    
 				}
         }    
-
+        else {
         //sort taxis based on earnings 
         Collections.sort(freeTaxis,(a,b)->a.totalEarnings - b.totalEarnings); 
         // 3,4,2 - > 2,3,4
@@ -351,12 +353,13 @@ public class RideBookingServiceImpl implements RideBookingService{
         }
         System.out.println(freetaxis);
         //get free Taxi nearest to us
-        Taxi finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
+        finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
         taxis.clear();
         freeTaxis.clear();
+		
+		
+	}
 		return finalTaxi;
-		
-		
 	}
         
 

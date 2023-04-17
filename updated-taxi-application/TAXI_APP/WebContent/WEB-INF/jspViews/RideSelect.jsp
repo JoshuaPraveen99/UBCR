@@ -64,35 +64,14 @@ i {
 </head>
 <body>
 <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <i class="fas fa-user"></i>
-                    <label for="driver-name">Driver Name:</label>
-                </div>
-                <div class="col-9">
-                    <p>${finalTaxi.getDriverName()}></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    <i class="fas fa-car"></i>
-                    <label for="vehicle-name">Vehicle Name:</label>
-                </div>
-                <div class="col-9">
-                    <p>${finalTaxi.getVehicleNumber()}</p>
-                </div>
-            </div>
-                <div class="col-9">
-                    <span th:text="${finalTaxi.getCarType()}"></span>
-                    <!-- Conditional clause to display different car icons -->
-                    <!-- Sedan -->
-                    <i th:if="${finalTaxi.carType == 'Sedan'}" class="fas fa-car-side"></i>
-                    <!-- SUV -->
-                    <i th:if="${finalTaxi.carType == 'SUV'}" class="fas fa-truck-pickup"></i>
-                    <!-- Hatchback -->
-                    <i th:if="${finalTaxi.carType == 'Hatchback'}" class="fas fa-car"></i>
-                </div>
-            </div>
-        </div>
+
+            <label for="driver-name">Driver Name:</label>
+            <p>${finalTaxi.getDriverName() }</p>
+            <label for="vehicle-number">Vehicle Number:</label>
+            <p>${finalTaxi.getVehicleNumber() }</p>
+            <label for="car-Type">CarType:</label>
+            <p>${finalTaxi.carType }</p>
+ </div>
+  
 </body>
 </html>
