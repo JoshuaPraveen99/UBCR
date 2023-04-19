@@ -107,7 +107,7 @@ public class RideController {
 		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
 		    double pickupTime = Double.parseDouble(time.format(formatter));
 		    List<Taxi> finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
-		    System.out.println(finalTaxi);
+		    //System.out.println(finalTaxi);
 		    //System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
 			System.out.println("Trail Success");
 			mv.addObject("finalTaxi",finalTaxi);
@@ -120,7 +120,8 @@ public class RideController {
 			ModelAndView mv=new ModelAndView();
 			System.out.println(id);
 			Taxi bookedTaxi=rs.confirmTaxi(id,String.valueOf(session.getAttribute("pickup")),String.valueOf(session.getAttribute("destination")));
-			mv.addObject(bookedTaxi);
+			System.out.println(bookedTaxi);
+			mv.addObject("bookedTaxi",bookedTaxi);
 			mv.setViewName("Confirmationpage");
 	    	return mv;
 	    	

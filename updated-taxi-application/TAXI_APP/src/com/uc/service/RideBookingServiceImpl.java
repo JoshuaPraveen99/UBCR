@@ -45,6 +45,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 	String destination;
 	double estimated_time=0.0;
 	Scanner sc=new Scanner(System.in);
+	List<TaxiEntity>taxiEntity=new ArrayList<>();
 	
 	
 	
@@ -198,47 +199,10 @@ public class RideBookingServiceImpl implements RideBookingService{
 	public List<Taxi> bookaRide(String pickup, String destination, double pickupTime) {
 		pickup=pickup;
 		destination=destination;
-		List<TaxiEntity>taxiEntity=new ArrayList<>();
+		taxiEntity.clear();
 		taxiEntity=tdao.findAll();
 		System.out.println(taxiEntity);
-		
-		/*List<TaxiEntity> entityList = // your entity list
-				ModelMapper modelMapper = new ModelMapper();
-
-				Converter<TaxiEntity, Taxi> sedanConverter = mappingContext -> {
-				    TaxiEntity taxiEntities = mappingContext.getSource();
-				    Taxi bean = new Sedan(taxiEntities.getCarType(),taxiEntities.getCurrentSpot(),taxiEntities.getDriverName(),taxiEntities.getCarModel(),taxiEntities.getVehicleNumber(),taxiEntities.getContact(),taxiEntities.getFreeTime(),taxiEntities.getTotalEarnings(),taxiEntities.getTaxi_id(),taxiEntities.isBooked()
-				    return bean;
-				};
-
-				Converter<TaxiEntity, > suSUVvConverter = mappingContext -> {
-				    Entity entity = mappingContext.getSource();
-				    SuvBean bean = new SuvBean();
-				    bean.setId(entity.getId());
-				    bean.setName(entity.getName());
-				    bean.setAge(entity.getAge());
-				    bean.setSuvProperty(entity.getSuvProperty());
-				    return bean;
-				};
-
-				modelMapper.typeMap(Entity.class, Taxi.class)
-				        .addMappings(mapper -> {
-				            mapper.when(src -> src.getCarType().equals("sedan")).setConverter(sedanConverter);
-				            mapper.when(src -> src.getCarType().equals("suv")).setConverter(suvConverter);
-				            // handle other cases
-				        });
-
-				List<Bean> beanList = entityList.stream()
-				        .map(entity -> modelMapper.map(entity, Bean.class))
-				        .collect(Collectors.toList());
-		List<Taxi> taxis = taxiEntity.stream()
-			    .map(taxiEntities -> {
-			        Taxi taxi = new Taxi(taxiEntities.getCarType(),taxiEntities.getCurrentSpot(),taxiEntities.getDriverName(),taxiEntities.getCarModel(),taxiEntities.getVehicleNumber(),taxiEntities.getContact(),taxiEntities.getFreeTime(),taxiEntities.getTotalEarnings(),taxiEntities.getTaxi_id(),taxiEntities.isBooked());
-			        // set properties of taxi from taxiEntity
-			        return taxi;
-			    })
-			    .collect(Collectors.toList());*/
-		
+		taxis.clear();
 		for(TaxiEntity t:taxiEntity) {
 			if(t.getCarType().equals("Sedan")) {
 				Taxi taxi=new Sedan(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id());
@@ -253,14 +217,14 @@ public class RideBookingServiceImpl implements RideBookingService{
 				taxis.add(taxi);
 			}
 		}
-
 		
 		
-		
+		freeTaxis.clear();
 		List<Taxi> freeTaxis = getFreeTaxis(taxis,pickupTime,pickup);
 		System.out.println(freeTaxis);
         if(freeTaxis.size() == 0)
         {       
+        	    
 				System.out.println("We are sorry to say that all are taxis are engaged at the specified time of pickup.\n");
 				System.out.println("Can we suggest you some taxis nearby your location and their estimated time of interval for you reference.\n");
 				String ans=sc.next();
@@ -294,30 +258,14 @@ public class RideBookingServiceImpl implements RideBookingService{
 			        }
 					Collections.sort(freeTaxis, (a,b) -> Double.compare(a.getestimated_time(), b.getestimated_time()));
 					List<Taxi>firstThreeTaxis=new ArrayList<>();
-					firstThreeTaxis=freeTaxis.subList(0, 3);
-					System.out.println(firstThreeTaxis);
-					for(Taxi t:firstThreeTaxis){
+					//firstThreeTaxis=freeTaxis.subList(0, 3);
+					//System.out.println(firstThreeTaxis);
+					/*for(Taxi t:firstThreeTaxis){
 						System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"    ESTIMATED TIME OF ARRIVAL: "+t.estimated_time+" IST \n");
-					}	
+					}*/	
                       
 			        Collections.sort(freeTaxis,(a,b)->a.totalEarnings - b.totalEarnings); 
-			        return firstThreeTaxis;
-			        /*System.out.println("Enter the preferred taxi to continue");
-			        int taxiId=sc.nextInt();
-			        freetaxis.clear();
-			        for(Taxi t:freeTaxis) {
-			        	if(taxiId==t.taxi_id) {
-			        		freetaxis.add(t);
-			        	}
-			        	else {
-			        		continue;
-			        	}
-			        }
-		            System.out.println(freetaxis);
-			        //get free Taxi nearest to us
-			        finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
-			        taxis.clear();
-			        freeTaxis.clear();*/
+			        return freeTaxis;
 			        
 				}
 				
@@ -334,6 +282,7 @@ public class RideBookingServiceImpl implements RideBookingService{
         System.out.println();
         
         System.out.println("AVAILABLE TAXIS AT YOUR LOCATION: \n");
+        FreeTaxis.clear();
         for(Taxi t:freeTaxis ) {
         	if(t.currentSpot.equals(pickup)) {
         		//double est_time=0.0;
@@ -349,24 +298,6 @@ public class RideBookingServiceImpl implements RideBookingService{
         	}
         		
         	}
-       
-	 /*  System.out.println("Enter the preferred taxi to continue");
-        int taxiId=sc.nextInt();
-		freetaxis.clear();
-        for(Taxi t:freeTaxis) {
-        	if(taxiId==t.taxi_id) {
-        		freetaxis.add(t);
-        		break;
-        	}
-        	else {
-        		continue;
-        	}
-        }
-        System.out.println(freetaxis);
-        //get free Taxi nearest to us
-        finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
-        taxis.clear();
-        freeTaxis.clear();*/
 		
 		
 	}
