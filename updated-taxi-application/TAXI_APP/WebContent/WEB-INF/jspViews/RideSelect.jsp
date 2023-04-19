@@ -60,18 +60,52 @@ i {
 .fas.fa-car {
     color:  black;
 }
+.bean-container {
+  display: block;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.bean-container:hover {
+  background-color: #e9e9e9;
+}
 </style>
 </head>
 <body>
-<div class="container">
 
+  <c:forEach var="bean" items="${finalTaxi}">
+  <div class="bean-container">
+  <a id="sendId" href="#" data-id="${bean.taxi_id}">  
             <label for="driver-name">Driver Name:</label>
-            <p>${finalTaxi.getDriverName() }</p>
+            <p>${bean.getDriverName() }</p>
             <label for="vehicle-number">Vehicle Number:</label>
-            <p>${finalTaxi.getVehicleNumber() }</p>
+            <p>${bean.getVehicleNumber() }</p>
             <label for="car-Type">CarType:</label>
-            <p>${finalTaxi.carType }</p>
- </div>
-  
+            <p>${bean.carType }</p> 
+  </a>
+  </div>
+</c:forEach>
+ <script>
+ $(document).ready(function() {
+	  $('#sendId').click(function() {
+		var beanId = $(this).data('id');
+	    var form = $('<form>', {
+	      method: 'post',
+	      action: '${pageContext.request.contextPath}/beanDetails.html'
+	    });
+	    $('<input>').attr({
+	      type: 'hidden',
+	      name: 'taxi_id',
+	      value: integerVal
+	    }).appendTo(form);
+	    form.appendTo('body').submit();
+	  });
+	});
+ </script> 
 </body>
 </html>

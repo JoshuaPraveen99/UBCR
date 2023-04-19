@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uc.businessbean.DropOffBean;
@@ -88,7 +89,7 @@ public class RideController {
 			return mv;
 		}
 		
-		@RequestMapping(value="/bookRide")
+	    @RequestMapping(value="/bookRide")
 		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean) {
 			ModelAndView mv=new ModelAndView();
 			System.out.println("bookRide works!!!");
@@ -101,12 +102,22 @@ public class RideController {
 			LocalTime time = LocalTime.now();
 		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
 		    double pickupTime = Double.parseDouble(time.format(formatter));
-		    Taxi finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
-		    System.out.println(Taxis);
-		    System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
+		    List<Taxi> finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
+		    System.out.println(finalTaxi);
+		    //System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
 			System.out.println("Trail Success");
 			mv.addObject("finalTaxi",finalTaxi);
 			mv.setViewName("RideSelect");
 			return mv;
 		}
+	    @RequestMapping(value="/beanDetails")
+	    public ModelAndView bookTaxi(@RequestParam("id")int id) {
+	    	System.out.println("Controller is working");
+			ModelAndView mv=new ModelAndView();
+			Taxi bookedTaxi=rs.confirmTaxi(id);
+			mv.addObject(bookedTaxi);
+			mv.setViewName("ConfirmationPage");
+	    	return mv;
+	    	
+	    }
 }

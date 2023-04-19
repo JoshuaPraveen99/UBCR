@@ -38,7 +38,12 @@ public class RideBookingServiceImpl implements RideBookingService{
 	private static final double EARTH_RADIUS = 6371; // Earth's radius in kilometers
 	List<Taxi>freeTaxis=new ArrayList<>();
 	List<Taxi>freetaxis=new ArrayList<>();
+	List<Taxi>FreeTaxis=new ArrayList<>();
 	Taxi finalTaxi=null;
+	Taxi bookedTaxi=null;
+	String pickup;
+	String destination;
+	double estimated_time=0.0;
 	Scanner sc=new Scanner(System.in);
 	
 	
@@ -187,8 +192,9 @@ public class RideBookingServiceImpl implements RideBookingService{
 	    }
 	
 	@Override
-	public Taxi bookaRide(String pickup, String destination, double pickupTime) {
-		
+	public List<Taxi> bookaRide(String pickup, String destination, double pickupTime) {
+		pickup=pickup;
+		destination=destination;
 		List<TaxiEntity>taxiEntity=new ArrayList<>();
 		taxiEntity=tdao.findAll();
 		System.out.println(taxiEntity);
@@ -251,7 +257,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 		List<Taxi> freeTaxis = getFreeTaxis(taxis,pickupTime,pickup);
 		System.out.println(freeTaxis);
         if(freeTaxis.size() == 0)
-        {       double estimated_time=0.0;
+        {       
 				System.out.println("We are sorry to say that all are taxis are engaged at the specified time of pickup.\n");
 				System.out.println("Can we suggest you some taxis nearby your location and their estimated time of interval for you reference.\n");
 				String ans=sc.next();
@@ -292,7 +298,8 @@ public class RideBookingServiceImpl implements RideBookingService{
 					}	
                       
 			        Collections.sort(freeTaxis,(a,b)->a.totalEarnings - b.totalEarnings); 
-			        System.out.println("Enter the preferred taxi to continue");
+			        return firstThreeTaxis;
+			        /*System.out.println("Enter the preferred taxi to continue");
 			        int taxiId=sc.nextInt();
 			        freetaxis.clear();
 			        for(Taxi t:freeTaxis) {
@@ -307,7 +314,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 			        //get free Taxi nearest to us
 			        finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
 			        taxis.clear();
-			        freeTaxis.clear();
+			        freeTaxis.clear();*/
 			        
 				}
 				
@@ -321,7 +328,6 @@ public class RideBookingServiceImpl implements RideBookingService{
         //sort taxis based on earnings 
         Collections.sort(freeTaxis,(a,b)->a.totalEarnings - b.totalEarnings); 
         // 3,4,2 - > 2,3,4
-        double estimated_time=0.0;
         System.out.println();
         
         System.out.println("AVAILABLE TAXIS AT YOUR LOCATION: \n");
@@ -334,12 +340,14 @@ public class RideBookingServiceImpl implements RideBookingService{
         		else {
         			estimated_time=t.freeTime;
         		}
+        		t.estimated_time=estimated_time;
+        		FreeTaxis.add(t);
         	System.out.println("TAXI ID: "+t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"      CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"     ESTIMATED TIME OF ARIVAL: "+estimated_time+" IST \n");
         	}
         		
         	}
        
-	   System.out.println("Enter the preferred taxi to continue");
+	 /*  System.out.println("Enter the preferred taxi to continue");
         int taxiId=sc.nextInt();
 		freetaxis.clear();
         for(Taxi t:freeTaxis) {
@@ -355,11 +363,37 @@ public class RideBookingServiceImpl implements RideBookingService{
         //get free Taxi nearest to us
         finalTaxi=bookTaxi(taxiId,pickup,destination,estimated_time,freetaxis);
         taxis.clear();
-        freeTaxis.clear();
+        freeTaxis.clear();*/
 		
 		
 	}
-		return finalTaxi;
+		return FreeTaxis;
+	}
+
+	@Override
+	public Taxi confirmTaxi(int id) {
+		// TODO Auto-generated method stub
+		int taxiId=sc.nextInt();
+		freetaxis.clear();
+        for(Taxi t:freeTaxis) {
+        	if(taxiId==t.taxi_id) {
+        		freetaxis.add(t);
+        		bookedTaxi=t;
+        		
+        		break;
+        	}
+        	else {
+        		continue;
+        	}
+        }
+        System.out.println(freetaxis);
+        //get free Taxi nearest to us
+        bookedTaxi=bookTaxi(taxiId,pickup,destination,bookedTaxi.estimated_time,freetaxis);
+        taxis.clear();
+        freeTaxis.clear();
+        return bookedTaxi;
+        
+		
 	}
         
 
