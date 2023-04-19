@@ -119,7 +119,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 	public static List<Taxi> getFreeTaxis(List<Taxi> taxis, double pickupTime, String pickupPoint){
 		List<Taxi>freeTaxis=new ArrayList<Taxi>();
 		for(Taxi t:taxis) {
-			if(t.currentSpot.equals(pickupPoint) && t.freeTime<=pickupTime && (calculateDistance(t.currentSpot,pickupPoint)/50)<=pickupTime-t.freeTime) {
+			if(t.freeTime<=pickupTime && (calculateDistance(t.currentSpot,pickupPoint)/50)<=pickupTime-t.freeTime) {
 				freeTaxis.add(t);
 			}
 		}
@@ -284,7 +284,7 @@ public class RideBookingServiceImpl implements RideBookingService{
         System.out.println("AVAILABLE TAXIS AT YOUR LOCATION: \n");
         FreeTaxis.clear();
         for(Taxi t:freeTaxis ) {
-        	if(t.currentSpot.equals(pickup)) {
+        	//if(t.currentSpot.equals(pickup)) {
         		//double est_time=0.0;
         		if(pickupTime>t.freeTime) {
         			estimated_time=pickupTime;
@@ -295,7 +295,7 @@ public class RideBookingServiceImpl implements RideBookingService{
         		t.estimated_time=estimated_time;
         		FreeTaxis.add(t);
         	System.out.println("TAXI ID: "+t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"      CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"     ESTIMATED TIME OF ARIVAL: "+estimated_time+" IST \n");
-        	}
+        	//}
         		
         	}
 		
