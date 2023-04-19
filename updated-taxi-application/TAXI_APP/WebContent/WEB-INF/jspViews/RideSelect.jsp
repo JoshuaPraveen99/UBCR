@@ -80,7 +80,7 @@ i {
 
   <c:forEach var="bean" items="${finalTaxi}">
   <div class="bean-container">
-  <a id="sendId" href="#" data-id="${bean.taxi_id}">  
+  <a class="sendId" href="beanDetails.html?id=${bean.taxi_id }" data-id="${bean.taxi_id}">  
             <label for="driver-name">Driver Name:</label>
             <p>${bean.getDriverName() }</p>
             <label for="vehicle-number">Vehicle Number:</label>
@@ -92,16 +92,17 @@ i {
 </c:forEach>
  <script>
  $(document).ready(function() {
-	  $('#sendId').click(function() {
+	  $('.sendId').click(function(event) {
+		event.preventDefault(); // prevent the default behavior of the anchor tag
 		var beanId = $(this).data('id');
 	    var form = $('<form>', {
 	      method: 'post',
-	      action: '${pageContext.request.contextPath}/beanDetails.html'
+	      action: 'beanDetails.html'
 	    });
 	    $('<input>').attr({
 	      type: 'hidden',
 	      name: 'taxi_id',
-	      value: integerVal
+	      value: beanId
 	    }).appendTo(form);
 	    form.appendTo('body').submit();
 	  });

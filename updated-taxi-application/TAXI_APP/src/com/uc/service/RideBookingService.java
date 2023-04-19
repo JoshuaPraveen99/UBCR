@@ -8,6 +8,6 @@ public interface RideBookingService {
 
 	public List<Taxi> bookaRide(String pickup, String destination, double pickupTime);
 
-	public Taxi confirmTaxi(int id);
+	public Taxi confirmTaxi(int id,String pickup,String destination);
 
 }

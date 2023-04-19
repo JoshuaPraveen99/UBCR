@@ -48,7 +48,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 	
 	
 	
-	public Taxi bookTaxi(int id,String pickup,String destination,double pickupTime,List<Taxi>freeTaxis) {	
+	public Taxi bookTaxi(int id,String pickup,String destination,double pickupTime,List<Taxi>Taxis) {	
 		int min=999;
 		int distancebetweenpickUpandDrop=0;
 		int earning=0;
@@ -57,7 +57,9 @@ public class RideBookingServiceImpl implements RideBookingService{
 		Taxi bookedTaxi=null;
 		String tripDetail="";
 		int totalEarnings=0;
-		for(Taxi t:freeTaxis) {
+		System.out.println(Taxis);
+		System.out.println(pickup+" "+ destination);
+		for(Taxi t:Taxis) {
 			//System.out.println(t.currentSpot);
 			//System.out.println(pickup);
 			int distanceBetweenCustomerandTaxi= (int)calculateDistance(t.getCurrentSpot(),pickup);
@@ -109,6 +111,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 		
 		//System.out.println("Taxi "+bookedTaxi.taxi_id+ " booked.\n");
 		//System.out.println("TAXI DETAILS: \n"+"DRIVER NAME: "+bookedTaxi.driverName+" VEHICLE NUMBER: "+bookedTaxi.vehicleNumber+" CAR MODEL: "+bookedTaxi.carModel+" CONTACT: "+bookedTaxi.contact+"\n");
+		System.out.println(bookedTaxi);
 		return bookedTaxi;
 	}
 	 
@@ -371,11 +374,12 @@ public class RideBookingServiceImpl implements RideBookingService{
 	}
 
 	@Override
-	public Taxi confirmTaxi(int id) {
+	public Taxi confirmTaxi(int id,String pickup,String destination) {
 		// TODO Auto-generated method stub
-		int taxiId=sc.nextInt();
+		int taxiId=id;
 		freetaxis.clear();
-        for(Taxi t:freeTaxis) {
+		System.out.println(taxis);
+        for(Taxi t:taxis) {
         	if(taxiId==t.taxi_id) {
         		freetaxis.add(t);
         		bookedTaxi=t;

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -90,7 +92,7 @@ public class RideController {
 		}
 		
 	    @RequestMapping(value="/bookRide")
-		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean) {
+		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean, HttpSession session) {
 			ModelAndView mv=new ModelAndView();
 			System.out.println("bookRide works!!!");
 			System.out.println(formLocationsBean);
@@ -99,6 +101,8 @@ public class RideController {
 			System.out.println(formLocationsBean);
 			pickup=formLocationsBean.getPickUpLocation();
 			destination=formLocationsBean.getDropOffLocation();
+			session.setAttribute("pickup", pickup);
+			session.setAttribute("destination", destination);
 			LocalTime time = LocalTime.now();
 		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
 		    double pickupTime = Double.parseDouble(time.format(formatter));
@@ -111,12 +115,13 @@ public class RideController {
 			return mv;
 		}
 	    @RequestMapping(value="/beanDetails")
-	    public ModelAndView bookTaxi(@RequestParam("id")int id) {
+	    public ModelAndView bookTaxi(@RequestParam("id")int id, HttpSession session) {
 	    	System.out.println("Controller is working");
 			ModelAndView mv=new ModelAndView();
-			Taxi bookedTaxi=rs.confirmTaxi(id);
+			System.out.println(id);
+			Taxi bookedTaxi=rs.confirmTaxi(id,String.valueOf(session.getAttribute("pickup")),String.valueOf(session.getAttribute("destination")));
 			mv.addObject(bookedTaxi);
-			mv.setViewName("ConfirmationPage");
+			mv.setViewName("Confirmationpage");
 	    	return mv;
 	    	
 	    }

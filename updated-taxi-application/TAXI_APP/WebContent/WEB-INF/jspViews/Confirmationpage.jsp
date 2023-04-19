@@ -20,11 +20,11 @@
  <div class="container">
 
             <label for="driver-name">Driver Name:</label>
-            <p>${finalTaxi.getDriverName() }</p>
+            <p>${bookedTaxi.getDriverName() }</p>
             <label for="vehicle-number">Vehicle Number:</label>
-            <p>${finalTaxi.getVehicleNumber() }</p>
+            <p>${bookedTaxi.getVehicleNumber() }</p>
             <label for="car-Type">CarType:</label>
-            <p>${finalTaxi.carType }</p> 
+            <p>${bookedTaxi.carType }</p> 
  </div>
 </body>
 
