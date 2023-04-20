@@ -89,6 +89,7 @@ select {
 	crossorigin="anonymous"></script>
 </head>
 <body>
+	<h1><p>${message}</p></h1>
 	<nav class="navbar"> <img src="LOGO.png" width="60px"
 		height="60px">
 	<button onclick="toggleMenu()" class="burger"></button>
@@ -148,8 +149,8 @@ select {
           <input type="text" placeholder="Enter the destination"><br><br>-->
 
 			<div class="up">
-				<form:form id="LocationForm" method="POST" modelAttribute="formlocations" action="${pageContext.request.contextPath}/bookRide.html">
-					<form:select id="pickUp_Location" path="pickUpKey">
+				<form:form id="LocationForm" method="POST" modelAttribute="formlocations" action="${pageContext.request.contextPath }/validateSession.html">
+				 		<form:select id="pickUp_Location" path="pickUpKey">
 						<form:option label="--Select PickUp  Location--" value="-1"/>
 						<form:options id="formOptions" items="${pickUp_Location}"></form:options>
 					</form:select>
@@ -197,9 +198,10 @@ const driveForm = document.getElementById('drive-form');
 
 // To submit the form
 //-------------------
+ 
 const form = document.getElementById("LocationForm");
 const RequestNowButton = document.getElementById("RequestButton");
-RequestNowButton.addEventListener("click",function(){
+RequestNowButton.addEventListener("click",function(){ //click event listener
 	form.submit();
 });
 
@@ -218,6 +220,10 @@ driveButton.addEventListener('click', () => {
   rideForm.style.display = 'none';
   driveForm.style.display = 'block';
 });
+
+function getContextPath() {
+	   return "<%=request.getContextPath()%>";
+	}
 
 function redirectToCustomerLoginPage() {
     window.location.href = "${pageContext.request.contextPath}/ShowLoginPage.html";

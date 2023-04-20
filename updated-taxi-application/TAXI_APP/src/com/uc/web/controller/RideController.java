@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,27 +92,40 @@ public class RideController {
 			return mv;
 		}
 		
+		@RequestMapping(value="/validateSession")
+		public String validateSession(HttpSession session, HttpServletRequest request) {
+		
+			//String contextPath = request.getContextPath();
+			System.out.println("control enters validateSession" );
+			if(session.getAttribute("user")!=null) {
+				return "redirect:/bookRide.html";
+			}else {
+				return "redirect:/showLoginPage.html";
+			}
+			
+		}
 	    @RequestMapping(value="/bookRide")
-		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean, HttpSession session) {
-			ModelAndView mv=new ModelAndView();
-			System.out.println("bookRide works!!!");
-			System.out.println(formLocationsBean);
-			formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
-			formLocationsBean.setDropOffLocation(dropOffmap.get(formLocationsBean.getDropOffKey()));
-			System.out.println(formLocationsBean);
-			pickup=formLocationsBean.getPickUpLocation();
-			destination=formLocationsBean.getDropOffLocation();
-			session.setAttribute("pickup", pickup);
-			session.setAttribute("destination", destination);
-			LocalTime time = LocalTime.now();
-		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
-		    double pickupTime = Double.parseDouble(time.format(formatter));
-		    List<Taxi> finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
-		    System.out.println(finalTaxi);
-		    //System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
-			System.out.println("Trail Success");
-			mv.addObject("finalTaxi",finalTaxi);
-			mv.setViewName("RideSelect");
+		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean, 
+						HttpSession session) {
+	    	ModelAndView mv=new ModelAndView();
+	    		System.out.println("bookRide works!!!");
+				System.out.println(formLocationsBean);
+				formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
+				formLocationsBean.setDropOffLocation(dropOffmap.get(formLocationsBean.getDropOffKey()));
+				System.out.println(formLocationsBean);
+				pickup=formLocationsBean.getPickUpLocation();
+				destination=formLocationsBean.getDropOffLocation();
+				session.setAttribute("pickup", pickup);
+				session.setAttribute("destination", destination);
+				LocalTime time = LocalTime.now();
+			    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
+			    double pickupTime = Double.parseDouble(time.format(formatter));
+			    List<Taxi> finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
+			    System.out.println(finalTaxi);
+			    //System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
+				System.out.println("Trail Success");
+				mv.addObject("finalTaxi",finalTaxi);
+				mv.setViewName("RideSelect");
 			return mv;
 		}
 	    @RequestMapping(value="/beanDetails")

@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>${message}</h2>
+<a href="${pageContext.request.contextPath }/logoutNow.html">Logout</a>
 </body>
 </html>

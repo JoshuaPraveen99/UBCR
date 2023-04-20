@@ -1,5 +1,7 @@
 package com.uc.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,6 @@ public class CustomerController {
 	@Autowired CustomerLoginClient ls;
 	@Autowired CustomerRegistrationClient rs;
 	
-	//@Autowired JavaMailSender javaMailSender;
-	RegistrationBean registrationBean= new RegistrationBean();
-
 	
 	@RequestMapping(value = "/ShowLoginPage")
 	public ModelAndView loadLoginForm() {
@@ -51,7 +50,8 @@ public class CustomerController {
 		}
 		return mv;}*/
 	@RequestMapping(value = "/ValidateLogin")
-	public ModelAndView validateLogin(@Valid @ModelAttribute("loginBean") LoginBean loginBean, BindingResult result) {
+	public ModelAndView validateLogin(@Valid @ModelAttribute("loginBean") LoginBean loginBean,
+			BindingResult result, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()) {
 			mv.setViewName("Login");
@@ -64,6 +64,8 @@ public class CustomerController {
 			boolean b=(check.equals(pbean.getUserName()));
 			System.out.println(b);
 			 if(pbean!=null && b==false && pass.equals(pbean.getPassword())) {
+				 session.setAttribute("user", loginBean.getUserName());
+				 System.out.println(session.getAttribute("user"));
 				 mv.setViewName("LoginSuccess");
 				 mv.addObject("message", "Welcome "+pbean.getUserName());
 			 }
@@ -75,7 +77,14 @@ public class CustomerController {
 		return mv;
 	}
 
-	
+	@RequestMapping(value="/logoutNow")
+	public String clearSession(HttpSession session) {
+		System.out.println("logout works");
+		session.invalidate();
+		
+		return "redirect:/populateLocations.html";
+		
+	}
 	
 	@RequestMapping(value="/customerRegistration")
 	public ModelAndView loadRegistraionPage() {
