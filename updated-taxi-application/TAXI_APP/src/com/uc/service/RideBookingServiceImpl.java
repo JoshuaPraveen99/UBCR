@@ -225,7 +225,7 @@ public class RideBookingServiceImpl implements RideBookingService{
         if(freeTaxis.size() == 0)
         {       
         	    
-				System.out.println("We are sorry to say that all are taxis are engaged at the specified time of pickup.\n");
+			/*	System.out.println("We are sorry to say that all are taxis are engaged at the specified time of pickup.\n");
 				System.out.println("Can we suggest you some taxis nearby your location and their estimated time of interval for you reference.\n");
 				String ans=sc.next();
 				if(ans.equals("yes")) {
@@ -260,20 +260,15 @@ public class RideBookingServiceImpl implements RideBookingService{
 					List<Taxi>firstThreeTaxis=new ArrayList<>();
 					//firstThreeTaxis=freeTaxis.subList(0, 3);
 					//System.out.println(firstThreeTaxis);
-					/*for(Taxi t:firstThreeTaxis){
+					for(Taxi t:firstThreeTaxis){
 						System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"    ESTIMATED TIME OF ARRIVAL: "+t.estimated_time+" IST \n");
-					}*/	
+					}
                       
 			        Collections.sort(freeTaxis,(a,b)->a.totalEarnings - b.totalEarnings); 
 			        return freeTaxis;
 			        
-				}
-				
-				
-				else {		
-                   System.out.println("No Taxi can be alloted. Exitting");
-                   
-				}
+				}*/
+				return null;
         }    
         else {
         //sort taxis based on earnings 
@@ -304,6 +299,68 @@ public class RideBookingServiceImpl implements RideBookingService{
 		return FreeTaxis;
 	}
 
+	
+	
+     public List<Taxi> bookaAltRide(String pickup, String destination, double pickupTime){
+ 		pickup=pickup;
+ 		destination=destination;
+ 		taxiEntity.clear();
+ 		taxiEntity=tdao.findAll();
+ 		System.out.println(taxiEntity);
+ 		taxis.clear();
+ 		for(TaxiEntity t:taxiEntity) {
+ 			if(t.getCarType().equals("Sedan")) {
+ 				Taxi taxi=new Sedan(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id());
+ 				taxis.add(taxi);
+ 			}
+ 			else if(t.getCarType().equals("SUV")){
+ 				Taxi taxi=new SUV(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id());
+ 				taxis.add(taxi);
+ 			}
+ 			else {
+ 				Taxi taxi=new Hatchback(t.getCarType(),t.getCurrentSpot(),t.getDriverName(),t.getCarModel(),t.getVehicleNumber(),t.getContact(),t.getFreeTime(),t.getTotalEarnings(),t.getTaxi_id());
+ 				taxis.add(taxi);
+ 			}
+ 		}
+ 		freeTaxis.clear();
+ 		for(Taxi t:taxis) {
+			freeTaxis.add(t);
+		}
+		System.out.println("TAXIS AVAILABLE: \n");
+        
+        for(Taxi t:freeTaxis) {
+        	if(!t.currentSpot.equals(pickup)) {
+        		double approx_time=t.getFreeTime()+(calculateDistance(t.currentSpot,pickup)/50);
+        		approx_time = Double.parseDouble(String.format("%.2f", approx_time));
+        		 if (approx_time % 1 >= 0.6) { // check if the decimal part is 0.6
+   		    	  approx_time += 0.4; // increment by 0.4 to make it 1.0
+   		    	  approx_time = Double.parseDouble(String.format("%.2f", approx_time));
+   		    	}
+        		
+        		if(approx_time<=pickupTime) {
+        			estimated_time=pickupTime;
+        		}
+        		else {
+        			estimated_time=approx_time;
+        		}
+				t.estimated_time=estimated_time;
+				System.out.println(t.taxi_id+" "+t.estimated_time);
+        		//System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickupPoint,dropPoint))+"    ESTIMATED TIME OF ARRIVAL: "+estimated_time+" IST \n");
+        		
+        	}
+			
+        }
+		Collections.sort(freeTaxis, (a,b) -> Double.compare(a.getestimated_time(), b.getestimated_time()));
+		List<Taxi>firstThreeTaxis=new ArrayList<>();
+		//firstThreeTaxis=freeTaxis.subList(0, 3);
+		//System.out.println(firstThreeTaxis);
+		/*for(Taxi t:firstThreeTaxis){
+			System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"    ESTIMATED TIME OF ARRIVAL: "+t.estimated_time+" IST \n");
+		}*/
+          
+        Collections.sort(freeTaxis,(a,b)->a.totalEarnings - b.totalEarnings); 
+        return freeTaxis;
+     }
 	@Override
 	public Taxi confirmTaxi(int id,String pickup,String destination) {
 		// TODO Auto-generated method stub
@@ -330,6 +387,7 @@ public class RideBookingServiceImpl implements RideBookingService{
         
 		
 	}
+	
         
 
 }

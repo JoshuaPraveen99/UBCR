@@ -77,7 +77,7 @@ i {
 </style>
 </head>
 <body>
-
+  <c:if test="${not empty taxi }">
   <c:forEach var="bean" items="${finalTaxi}">
   <div class="bean-container">
   <a class="sendId" href="beanDetails.html?id=${bean.taxi_id }" >  
@@ -94,23 +94,10 @@ i {
   </a>
   </div>
 </c:forEach>
- <script>
- $(document).ready(function() {
-	  $('.sendId').click(function(event) {
-		event.preventDefault(); // prevent the default behavior of the anchor tag
-		var beanId = $(this).data('id');
-	    var form = $('<form>', {
-	      method: 'post',
-	      action: 'beanDetails.html'
-	    });
-	    $('<input>').attr({
-	      type: 'hidden',
-	      name: 'taxi_id',
-	      value: beanId
-	    }).appendTo(form);
-	    form.appendTo('body').submit();
-	  });
-	});
- </script> 
+</c:if>
+<c:if test="${not empty message }">
+ <a href="ProcessMessage">${message }</a>
+ </c:if>
+
 </body>
 </html>

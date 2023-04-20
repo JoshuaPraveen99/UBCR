@@ -10,4 +10,6 @@ public interface RideBookingService {
 
 	public Taxi confirmTaxi(int id,String pickup,String destination);
 
+	public List<Taxi> bookaAltRide(String pickup, String destination, double pickupTime);
+
 }

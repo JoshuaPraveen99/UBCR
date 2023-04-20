@@ -37,6 +37,7 @@ public class RideController {
 	Map<Integer,String> dropOffmap =  new HashMap<Integer,String>();
 	String pickup;
 	String destination;
+	double pickupTime=0.0;
 
 	//populating the pickup location
 		@ModelAttribute("pickUp_Location")
@@ -104,7 +105,6 @@ public class RideController {
 			}
 			
 		}
-	    @RequestMapping(value="/bookRide")
 		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean, 
 						HttpSession session) {
 	    	ModelAndView mv=new ModelAndView();
