@@ -105,27 +105,32 @@ public class RideController {
 			}
 			
 		}
-		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean, 
-						HttpSession session) {
-	    	ModelAndView mv=new ModelAndView();
-	    		System.out.println("bookRide works!!!");
-				System.out.println(formLocationsBean);
-				formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
-				formLocationsBean.setDropOffLocation(dropOffmap.get(formLocationsBean.getDropOffKey()));
-				System.out.println(formLocationsBean);
-				pickup=formLocationsBean.getPickUpLocation();
-				destination=formLocationsBean.getDropOffLocation();
-				session.setAttribute("pickup", pickup);
-				session.setAttribute("destination", destination);
-				LocalTime time = LocalTime.now();
-			    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
-			    double pickupTime = Double.parseDouble(time.format(formatter));
-			    List<Taxi> finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
-			    System.out.println(finalTaxi);
-			    //System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
-				System.out.println("Trail Success");
-				mv.addObject("finalTaxi",finalTaxi);
-				mv.setViewName("RideSelect");
+
+		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean, HttpSession session) {
+			ModelAndView mv=new ModelAndView();
+			System.out.println("bookRide works!!!");
+			System.out.println(formLocationsBean);
+			formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
+			formLocationsBean.setDropOffLocation(dropOffmap.get(formLocationsBean.getDropOffKey()));
+			System.out.println(formLocationsBean);
+			pickup=formLocationsBean.getPickUpLocation();
+			destination=formLocationsBean.getDropOffLocation();
+			session.setAttribute("pickup", pickup);
+			session.setAttribute("destination", destination);
+			LocalTime time = LocalTime.now();
+		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
+		    pickupTime = Double.parseDouble(time.format(formatter));
+		    session.setAttribute("pickupTime",pickupTime);
+		    List<Taxi> finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
+		    //System.out.println(finalTaxi);
+		    //System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
+			System.out.println("Trail Success");
+			if(finalTaxi==null) {
+			mv.addObject("finalTaxi",finalTaxi);}
+			else {
+				mv.addObject("message", "We are sorry to say that all are taxis are engaged at the specified time of pickup. Can we suggest you some taxis nearby your location and their estimated time of interval for you reference.");
+			}
+			mv.setViewName("RideSelect");
 			return mv;
 		}
 	    @RequestMapping(value="/beanDetails")
@@ -138,5 +143,14 @@ public class RideController {
 			mv.setViewName("Confirmationpage");
 	    	return mv;
 	    	
+	    }
+	    @RequestMapping(value="/ProcessMessage")
+	    public ModelAndView processMessage() {
+	    	System.out.println("processMessage is working");
+	    	ModelAndView mv=new ModelAndView();
+	    	List<Taxi> AltTaxi=rs.bookaAltRide(pickup,destination,pickupTime);
+	    	mv.addObject(AltTaxi);
+	    	mv.setViewName("RideSelect");
+	    	return mv;
 	    }
 }
