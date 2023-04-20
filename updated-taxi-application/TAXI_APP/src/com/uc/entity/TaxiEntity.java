@@ -13,7 +13,15 @@ import javax.persistence.Table;
 @Table(name="taxis")
 public class TaxiEntity {
 	
-	 @Id
+	 @Override
+	public String toString() {
+		return "TaxiEntity [taxi_id=" + taxi_id + ", currentSpot=" + currentSpot + ", nextSpot=" + nextSpot
+				+ ", freeTime=" + freeTime + ", totalEarnings=" + totalEarnings + ", carType=" + carType
+				+ ", driverName=" + driverName + ", carModel=" + carModel + ", contact=" + contact + ", vehicleNumber="
+				+ vehicleNumber + ", estimated_time=" + estimated_time + "]";
+	}
+
+	@Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 @Column(name="taxi_id")
 	 int taxi_id;

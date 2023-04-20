@@ -80,13 +80,17 @@ i {
 
   <c:forEach var="bean" items="${finalTaxi}">
   <div class="bean-container">
-  <a class="sendId" href="beanDetails.html?id=${bean.taxi_id }" data-id="${bean.taxi_id}">  
+  <a class="sendId" href="beanDetails.html?id=${bean.taxi_id }" >  
             <label for="driver-name">Driver Name:</label>
             <p>${bean.getDriverName() }</p>
             <label for="vehicle-number">Vehicle Number:</label>
             <p>${bean.getVehicleNumber() }</p>
             <label for="car-Type">CarType:</label>
             <p>${bean.carType }</p> 
+            <label for="car-Model">CarModel:</label>
+            <p>${bean.carModel}</p> 
+            <label for="estimated_time">Time of Arrival:</label>
+            <p>${bean.estimated_time}</p> 
   </a>
   </div>
 </c:forEach>

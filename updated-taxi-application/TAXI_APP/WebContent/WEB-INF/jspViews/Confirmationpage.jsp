@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="com.uc.web.controller.RideController" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,11 @@
             <p>${bookedTaxi.getVehicleNumber() }</p>
             <label for="car-Type">CarType:</label>
             <p>${bookedTaxi.carType }</p> 
+            <label for="car-Model">CarModel:</label>
+            <p>${bookedTaxi.carModel}</p> 
+            <label for="estimated_time">Time of Arrival:</label>
+            <p>${bookedTaxi.estimated_time}</p> 
+            
  </div>
 </body>
 
