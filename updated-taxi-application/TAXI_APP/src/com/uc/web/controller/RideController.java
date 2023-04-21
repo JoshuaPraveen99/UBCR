@@ -109,8 +109,17 @@ public class RideController {
 			if(session.getAttribute("user")!=null) {
 				
 				 session.setAttribute("formLocationsBean", formLocationsBean);
+				    formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
+					formLocationsBean.setDropOffLocation(dropOffmap.get(formLocationsBean.getDropOffKey()));
+					System.out.println(formLocationsBean);
+					pickup=formLocationsBean.getPickUpLocation();
+					destination=formLocationsBean.getDropOffLocation();
+					session.setAttribute("pickup", pickup);
+					session.setAttribute("destination", destination);
+					System.out.println(pickup+" "+destination);
 				 RedirectView redirectView = new RedirectView("/bookRide.html");
 		         redirectView.setContextRelative(true);
+		         
 		         return new ModelAndView(redirectView);
 			}else {
 				 RedirectView redirectView = new RedirectView("/ShowLoginPage.html");
@@ -124,13 +133,13 @@ public class RideController {
 			ModelAndView mv=new ModelAndView();
 			System.out.println("bookRide works!!!");
 			System.out.println(formLocationsBean);
-			formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
+			/*formLocationsBean.setPickUpLocation(pickUpmap.get(formLocationsBean.getPickUpKey()));
 			formLocationsBean.setDropOffLocation(dropOffmap.get(formLocationsBean.getDropOffKey()));
 			System.out.println(formLocationsBean);
 			pickup=formLocationsBean.getPickUpLocation();
 			destination=formLocationsBean.getDropOffLocation();
 			session.setAttribute("pickup", pickup);
-			session.setAttribute("destination", destination);
+			session.setAttribute("destination", destination);*/
 			System.out.println(pickup+" "+destination);
 			LocalTime time = LocalTime.now();
 		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");

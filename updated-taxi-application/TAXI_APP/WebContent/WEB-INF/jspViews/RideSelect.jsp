@@ -96,7 +96,7 @@ i {
 </c:forEach>
 </c:if>
 <c:if test="${not empty message }">
- <a href="ProcessMessage">${message }</a>
+ <a href="${pageContext.request.contextPath }/ProcessMessage.html">${message }</a>
  </c:if>
 
 </body>
