@@ -13,10 +13,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.uc.businessbean.DropOffBean;
 import com.uc.businessbean.GetFormLocationsBean;
@@ -24,6 +26,7 @@ import com.uc.businessbean.PickUpBean;
 import com.uc.businessbean.Taxi;
 import com.uc.service.PopulateLocationService;
 import com.uc.service.RideBookingService;
+import com.uc.web.controller.CustomerController;
 
 @Controller
 public class RideController {
@@ -38,6 +41,7 @@ public class RideController {
 	String pickup;
 	String destination;
 	double pickupTime=0.0;
+	GetFormLocationsBean formLocationsBean;
 
 	//populating the pickup location
 		@ModelAttribute("pickUp_Location")
@@ -88,25 +92,35 @@ public class RideController {
 		public ModelAndView populateLocations() {
 			System.out.println("populate location works");
 			ModelAndView mv = new ModelAndView();
+		
 			mv.addObject("formlocations",new GetFormLocationsBean());
 			mv.setViewName("index");
 			return mv;
 		}
 		
 		@RequestMapping(value="/validateSession")
-		public String validateSession(HttpSession session, HttpServletRequest request) {
+		public ModelAndView validateSession(HttpSession session, HttpServletRequest request,@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean) {
 		
 			//String contextPath = request.getContextPath();
 			System.out.println("control enters validateSession" );
+			System.out.println(formLocationsBean);
+			session.setAttribute("formLocationsBean", formLocationsBean);
+			
 			if(session.getAttribute("user")!=null) {
-				return "redirect:/bookRide.html";
+				
+				 session.setAttribute("formLocationsBean", formLocationsBean);
+				 RedirectView redirectView = new RedirectView("/bookRide.html");
+		         redirectView.setContextRelative(true);
+		         return new ModelAndView(redirectView);
 			}else {
-				return "redirect:/showLoginPage.html";
+				 RedirectView redirectView = new RedirectView("/ShowLoginPage.html");
+		         redirectView.setContextRelative(true);
+		         return new ModelAndView(redirectView);
 			}
 			
 		}
-
-		public ModelAndView bookRide(@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean, HttpSession session) {
+        @RequestMapping(value="/bookRide")
+		public ModelAndView bookRide(HttpSession session) {
 			ModelAndView mv=new ModelAndView();
 			System.out.println("bookRide works!!!");
 			System.out.println(formLocationsBean);
@@ -117,6 +131,7 @@ public class RideController {
 			destination=formLocationsBean.getDropOffLocation();
 			session.setAttribute("pickup", pickup);
 			session.setAttribute("destination", destination);
+			System.out.println(pickup+" "+destination);
 			LocalTime time = LocalTime.now();
 		    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H.mm");
 		    pickupTime = Double.parseDouble(time.format(formatter));

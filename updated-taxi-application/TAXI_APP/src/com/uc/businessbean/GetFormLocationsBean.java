@@ -1,5 +1,8 @@
 package com.uc.businessbean;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class GetFormLocationsBean {
 
 	private int pickUpKey;

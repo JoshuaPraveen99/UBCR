@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.uc.businessbean.LoginBean;
 import com.uc.businessbean.RegistrationBean;
@@ -66,8 +67,10 @@ public class CustomerController {
 			 if(pbean!=null && b==false && pass.equals(pbean.getPassword())) {
 				 session.setAttribute("user", loginBean.getUserName());
 				 System.out.println(session.getAttribute("user"));
-				 mv.setViewName("LoginSuccess");
-				 mv.addObject("message", "Welcome "+pbean.getUserName());
+				 RedirectView redirectView = new RedirectView("/populateLocations.html");
+		         redirectView.setContextRelative(true);
+		         mv.setView(redirectView);
+				// mv.setViewName("LoginSuccess");
 			 }
 			 else {
 				 mv.setViewName("Login");
