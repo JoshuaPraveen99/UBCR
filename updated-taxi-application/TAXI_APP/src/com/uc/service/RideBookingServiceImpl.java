@@ -281,11 +281,16 @@ public class RideBookingServiceImpl implements RideBookingService{
         for(Taxi t:freeTaxis ) {
         	//if(t.currentSpot.equals(pickup)) {
         		//double est_time=0.0;
-        		if(pickupTime>t.freeTime) {
+        		if(t.currentSpot.equals(pickup)) {
         			estimated_time=pickupTime;
         		}	
         		else {
-        			estimated_time=t.freeTime;
+        			estimated_time=pickupTime+(calculateDistance(t.currentSpot,pickup)/50);
+        			 if (estimated_time % 1 >= 0.6) { // check if the decimal part is 0.6
+		   		    	estimated_time += 0.4; // increment by 0.4 to make it 1.0
+		   		    	
+        		}
+        			 estimated_time = Double.parseDouble(String.format("%.2f", estimated_time));
         		}
         		t.estimated_time=estimated_time;
         		FreeTaxis.add(t);
@@ -322,36 +327,33 @@ public class RideBookingServiceImpl implements RideBookingService{
  				taxis.add(taxi);
  			}
  		}
+ 		System.out.println(taxis);
  		freeTaxis.clear();
  		for(Taxi t:taxis) {
 			freeTaxis.add(t);
 		}
+ 		System.out.println(freeTaxis);
 		System.out.println("TAXIS AVAILABLE: \n");
         
         for(Taxi t:freeTaxis) {
-        	if(!t.currentSpot.equals(pickup)) {
-        		double approx_time=t.getFreeTime()+(calculateDistance(t.currentSpot,pickup)/50);
+        	//if(!t.currentSpot.equals(pickup)) {
+        		double approx_time=t.freeTime+(calculateDistance(t.currentSpot,pickup)/50);
         		approx_time = Double.parseDouble(String.format("%.2f", approx_time));
         		 if (approx_time % 1 >= 0.6) { // check if the decimal part is 0.6
    		    	  approx_time += 0.4; // increment by 0.4 to make it 1.0
    		    	  approx_time = Double.parseDouble(String.format("%.2f", approx_time));
    		    	}
         		
-        		if(approx_time<=pickupTime) {
-        			estimated_time=pickupTime;
-        		}
-        		else {
-        			estimated_time=approx_time;
-        		}
+                estimated_time=approx_time;
 				t.estimated_time=estimated_time;
 				System.out.println(t.taxi_id+" "+t.estimated_time);
-        		//System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickupPoint,dropPoint))+"    ESTIMATED TIME OF ARRIVAL: "+estimated_time+" IST \n");
+        		System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"    ESTIMATED TIME OF ARRIVAL: "+estimated_time+" IST \n");
         		
-        	}
+        	//}
 			
         }
 		Collections.sort(freeTaxis, (a,b) -> Double.compare(a.getestimated_time(), b.getestimated_time()));
-		List<Taxi>firstThreeTaxis=new ArrayList<>();
+		//List<Taxi>firstThreeTaxis=new ArrayList<>();
 		//firstThreeTaxis=freeTaxis.subList(0, 3);
 		//System.out.println(firstThreeTaxis);
 		/*for(Taxi t:firstThreeTaxis){

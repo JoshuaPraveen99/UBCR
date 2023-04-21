@@ -148,8 +148,9 @@ public class RideController {
 		    List<Taxi> finalTaxi=rs.bookaRide(pickup,destination,pickupTime);
 		    //System.out.println(finalTaxi);
 		    //System.out.println(finalTaxi.getCarType()+" "+finalTaxi.getDriverName());
+			//System.out.println("Trail Success");
+			if(finalTaxi!=null) {
 			System.out.println("Trail Success");
-			if(finalTaxi==null) {
 			mv.addObject("finalTaxi",finalTaxi);}
 			else {
 				mv.addObject("message", "We are sorry to say that all are taxis are engaged at the specified time of pickup. Can we suggest you some taxis nearby your location and their estimated time of interval for you reference.");
@@ -163,7 +164,8 @@ public class RideController {
 			ModelAndView mv=new ModelAndView();
 			System.out.println(id);
 			Taxi bookedTaxi=rs.confirmTaxi(id,String.valueOf(session.getAttribute("pickup")),String.valueOf(session.getAttribute("destination")));
-			mv.addObject(bookedTaxi);
+			System.out.println(bookedTaxi);
+			mv.addObject("bookedTaxi",bookedTaxi);
 			mv.setViewName("Confirmationpage");
 	    	return mv;
 	    	
@@ -173,7 +175,7 @@ public class RideController {
 	    	System.out.println("processMessage is working");
 	    	ModelAndView mv=new ModelAndView();
 	    	List<Taxi> AltTaxi=rs.bookaAltRide(pickup,destination,pickupTime);
-	    	mv.addObject(AltTaxi);
+	    	mv.addObject("finalTaxi",AltTaxi);
 	    	mv.setViewName("RideSelect");
 	    	return mv;
 	    }

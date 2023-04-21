@@ -77,7 +77,7 @@ i {
 </style>
 </head>
 <body>
-  <c:if test="${not empty taxi }">
+  <c:if test="${not empty finalTaxi }">
   <c:forEach var="bean" items="${finalTaxi}">
   <div class="bean-container">
   <a class="sendId" href="beanDetails.html?id=${bean.taxi_id }" >  
