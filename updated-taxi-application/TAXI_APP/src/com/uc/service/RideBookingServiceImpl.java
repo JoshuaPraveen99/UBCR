@@ -39,6 +39,7 @@ public class RideBookingServiceImpl implements RideBookingService{
 	List<Taxi>freeTaxis=new ArrayList<>();
 	List<Taxi>freetaxis=new ArrayList<>();
 	List<Taxi>FreeTaxis=new ArrayList<>();
+	List<Taxi>SortedTaxis=new ArrayList<>();
 	Taxi finalTaxi=null;
 	Taxi bookedTaxi=null;
 	String pickup;
@@ -359,9 +360,12 @@ public class RideBookingServiceImpl implements RideBookingService{
 		/*for(Taxi t:firstThreeTaxis){
 			System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"    ESTIMATED TIME OF ARRIVAL: "+t.estimated_time+" IST \n");
 		}*/
-          
-        Collections.sort(freeTaxis,(a,b)->a.totalEarnings - b.totalEarnings); 
-        return freeTaxis;
+        SortedTaxis.clear() ;
+        for(int i=0;i<3;i++) {
+        	SortedTaxis.add(freeTaxis.get(i));
+        	
+        }
+        return SortedTaxis;
      }
 	@Override
 	public Taxi confirmTaxi(int id,String pickup,String destination) {
