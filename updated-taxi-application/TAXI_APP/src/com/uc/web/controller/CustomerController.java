@@ -67,7 +67,7 @@ public class CustomerController {
 			 if(pbean!=null && b==false && pass.equals(pbean.getPassword())) {
 				 session.setAttribute("user", loginBean.getUserName());
 				 System.out.println(session.getAttribute("user"));
-				 RedirectView redirectView = new RedirectView("/populateLocations.html");
+				 RedirectView redirectView = new RedirectView("/populateLocationsAfterLogin.html");
 		         redirectView.setContextRelative(true);
 		         mv.setView(redirectView);
 				// mv.setViewName("LoginSuccess");
