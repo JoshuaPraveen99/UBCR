@@ -21,7 +21,7 @@
 <link href="./styles.css" rel="stylesheet" />
 <style>
 #right {
-	margin-right: 700px;
+	margin-right: 2400px;
 }
 
 
@@ -85,15 +85,15 @@ select {
 body{
     overflow-x: hidden;  
     background-image: url("Home.jpg");
-    background-size:contain;
+    background-size:cover;
 }
 .slider{
-    margin-left: 1052.5px;
+    margin-left:-70px;
+    margin-top: 72px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(9px);
-    min-height: 40vh;
+    min-height:200vh;
     width:14.2rem;
-    position: relative;
     padding-top: 1rem;
     overflow-y: auto;
     transition:0.2s ease;
@@ -106,10 +106,10 @@ body{
     transform: translateX(-50px);
 }
 .image{
-    margin-left: 128px;
+    margin-left: 20px;
     border-radius: 50%;
-    height: 4.5rem;
-    width:4.5rem;
+    height: 4.3rem;
+    width:4.3rem;
     cursor: pointer;
 }
 .maintext{
@@ -122,9 +122,9 @@ body{
     backdrop-filter: blur(9px);
 }
 .profile{
-    margin-left: 1052.5px;
+    margin-left: -1900px;
     display: flex;
-    margin-top: -15px;
+    margin-top: -2px;
     /* border: 2px solid black; */
     width:14.2rem;
     padding: 2px;
@@ -176,6 +176,28 @@ body{
 	</div>
 	<button class="button">Safety</button>
 	<button class="button" id="right">Help</button>
+	<div class="profile" id="profile">
+            <img src="profile.jpg" alt="profileImage" class="image" id="imageToggle">
+        </div>
+        <div class="close slider " id="hide">
+            <div class="profileText">
+                <p class="maintext">John Wick</p>
+            </div>
+        
+            <div class="myprofile childs">
+                <i class="fa-solid fa-user"></i><p class="text" id="profileToggle">My Profile</p>
+                <a href="/logout"></a>
+            </div>
+            <div class="myrides childs">
+                <i class="fa-solid fa-car"></i><p class="text">My Rides</p>
+            </div>
+            <div class="mytransactions childs">
+                <i class="fa-solid fa-money-bill-transfer"></i><p class="text">Transactions</p>
+            </div>
+            <div class="logout childs">
+                <i class="fa-solid fa-right-from-bracket"></i><p class="text">Log Out</p>
+            </div>
+        </div>
 	</nav>
 	<div class="container">
 		<div class="options">
@@ -233,30 +255,8 @@ body{
 				delivering</a>
 		</div>
 	</div>
-	<div class="mainbody">
-        <div class="profile" id="profile">
-            <img src="profile.jpg" alt="profileImage" class="image" id="imageToggle">
-        </div>
-        <div class="close slider " id="hide">
-            <div class="profileText">
-                <p class="maintext">John Wick</p>
-            </div>
         
-            <div class="myprofile childs">
-                <i class="fa-solid fa-user"></i><p class="text" id="profileToggle">My Profile</p>
-                <a href="/logout"></a>
-            </div>
-            <div class="myrides childs">
-                <i class="fa-solid fa-car"></i><p class="text">My Rides</p>
-            </div>
-            <div class="mytransactions childs">
-                <i class="fa-solid fa-money-bill-transfer"></i><p class="text">Transactions</p>
-            </div>
-            <div class="logout childs">
-                <i class="fa-solid fa-right-from-bracket"></i><p class="text">Log Out</p>
-            </div>
-        </div>
-    </div>
+
 	<script>
       const toggleMenu = () => document.body.classList.toggle("open");
       const rideButton = document.getElementById('ride-button');
