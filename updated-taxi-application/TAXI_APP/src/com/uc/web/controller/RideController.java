@@ -42,6 +42,7 @@ public class RideController {
 	String destination;
 	double pickupTime=0.0;
 	GetFormLocationsBean formLocationsBean;
+	int id=0;
 
 	//populating the pickup location
 		@ModelAttribute("pickUp_Location")
@@ -163,12 +164,19 @@ public class RideController {
 	    	System.out.println("Controller is working");
 			ModelAndView mv=new ModelAndView();
 			System.out.println(id);
-			Taxi bookedTaxi=rs.confirmTaxi(id,String.valueOf(session.getAttribute("pickup")),String.valueOf(session.getAttribute("destination")));
-			System.out.println(bookedTaxi);
-			mv.addObject("bookedTaxi",bookedTaxi);
-			mv.setViewName("Confirmationpage");
+			session.setAttribute("id", id);
+			mv.setViewName("PaymentPage");
 	    	return mv;
 	    	
+	    }
+	    @RequestMapping(value="TaxiDetails")
+	    public ModelAndView confirmTaxi(HttpSession session) {
+	    	ModelAndView mv=new ModelAndView();
+	    	Taxi bookedTaxi=rs.confirmTaxi((int) session.getAttribute("id"),String.valueOf(session.getAttribute("pickup")),String.valueOf(session.getAttribute("destination")));
+			System.out.println(bookedTaxi);
+			mv.addObject("bookedTaxi",bookedTaxi);
+	    	mv.setViewName("Confirmationpage");
+	    	return mv;
 	    }
 	    @RequestMapping(value="/ProcessMessage")
 	    public ModelAndView processMessage() {

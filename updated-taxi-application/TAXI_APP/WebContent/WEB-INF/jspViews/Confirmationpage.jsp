@@ -31,7 +31,7 @@
             <label for="estimated_time">Time of Arrival:</label>
             <p>${bookedTaxi.estimated_time}</p> 
             
- </div>
+</div>
 </body>
 
 </html>
