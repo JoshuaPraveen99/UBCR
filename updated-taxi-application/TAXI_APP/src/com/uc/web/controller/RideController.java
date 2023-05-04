@@ -99,6 +99,15 @@ public class RideController {
 			return mv;
 		}
 		
+		@RequestMapping(value="/populateLocationsAfterLogin")
+		public ModelAndView populateLocationsAfterLogin() {
+			System.out.println("populate location works");
+			ModelAndView mv = new ModelAndView();
+		
+			mv.addObject("formlocations",new GetFormLocationsBean());
+			mv.setViewName("LoginLandingPage");
+			return mv;
+		}
 		@RequestMapping(value="/validateSession")
 		public ModelAndView validateSession(HttpSession session, HttpServletRequest request,@ModelAttribute("formlocations") GetFormLocationsBean formLocationsBean) {
 		
