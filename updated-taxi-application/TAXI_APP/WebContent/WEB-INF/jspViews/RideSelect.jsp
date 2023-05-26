@@ -38,28 +38,6 @@ label {
     margin-right: 10px;
 }
 
-i {
-    margin-right: 10px;
-}
-
-.fas {
-    font-size: 18px;
-    color: #666;
-}
-
-/* Conditional CSS for Car Type Icons */
-
-.fas.fa-car-side {
-    color: black;
-}
-
-.fas.fa-truck-pickup {
-    color: black;
-}
-
-.fas.fa-car {
-    color:  black;
-}
 .bean-container {
   display: block;
   background-color: #f9f9f9;
@@ -74,30 +52,72 @@ i {
 .bean-container:hover {
   background-color: #e9e9e9;
 }
+            .icon{
+                width: 75px;
+                display: inline-block;
+                transition:filter 0.5s ease-in-out;
+            }
+            .SUV{
+                width:75px;
+                transform: scaleX(-1);
+                transition:filter 0.5s ease-in-out;
+          
+            }
+            .time{
+                margin-top:-20px;
+                margin-left:17px;
+            }
+            .SUV:hover{
+               filter: invert(100%);
+            }
+            .icon:hover{
+                filter: invert(100%);
+            }
+             .text{
+                display: inline-block;
+                margin-left: 0px;
+                vertical-align:35px ;
+                font-weight: bolder;
+            }
 </style>
 </head>
 <body>
-  <c:if test="${not empty finalTaxi }">
+ <c:if test="${not empty finalTaxi}">
   <c:forEach var="bean" items="${finalTaxi}">
-  <div class="bean-container">
-  <a class="sendId" href="beanDetails.html?id=${bean.taxi_id }" >  
-            <label for="driver-name">Driver Name:</label>
-            <p>${bean.getDriverName() }</p>
-            <label for="vehicle-number">Vehicle Number:</label>
-            <p>${bean.getVehicleNumber() }</p>
-            <label for="car-Type">CarType:</label>
-            <p>${bean.carType }</p> 
-            <label for="car-Model">CarModel:</label>
-            <p>${bean.carModel}</p> 
-            <label for="estimated_time">Time of Arrival:</label>
-            <p>${bean.estimated_time}</p> 
-  </a>
-  </div>
-</c:forEach>
+    <div class="bean-container">
+      <a class="sendId" href="beanDetails.html?id=${bean.taxi_id}">  
+        <label for="driver-name">Driver Name:</label>
+        <p>${bean.getDriverName()}</p>
+        <label for="vehicle-number">Vehicle Number:</label>
+        <p>${bean.getVehicleNumber()}</p>
+        <label class="text" for="car-Type">CarType:</label>
+        <c:choose>
+          <c:when test="${bean.carType eq 'Sedan'}">
+            <img src="Sedan.png" class="icon"><p class="text">SEDAN</p>
+          </c:when>
+          <c:when test="${ bean.carType eq 'SUV'}">
+            <img src="SUV.png" class="SUV"><p class="text">SUV</p>
+          </c:when>
+          <c:when test="${bean.carType eq 'Hatchback'}">
+            <img src="Hatchback.png" class="icon"><p class="text">HATCHBACK</p>
+          </c:when>
+          <c:otherwise>
+            <p>HI</p>
+          </c:otherwise>
+        </c:choose>
+        <br>
+        <label for="car-Model">CarModel:</label>
+        <p>${bean.carModel}</p> 
+        <label for="estimated_time">Time of Arrival:</label>
+        <p>${bean.estimated_time}</p> 
+      </a>
+    </div>
+  </c:forEach>
 </c:if>
-<c:if test="${not empty message }">
- <a href="${pageContext.request.contextPath }/ProcessMessage.html">${message }</a>
- </c:if>
+
+<c:if test="${not empty message}">
+  <a href="${pageContext.request.contextPath}/ProcessMessage.html">${message}</a>
+</c:if>
 
 </body>
 </html>

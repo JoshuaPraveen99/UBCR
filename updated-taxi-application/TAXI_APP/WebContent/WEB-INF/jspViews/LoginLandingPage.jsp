@@ -21,7 +21,7 @@
 <link href="./styles.css" rel="stylesheet" />
 <style>
 #right {
-	margin-right: 2400px;
+	margin-left:-400px;
 }
 
 
@@ -84,16 +84,16 @@ select {
 
 body{
     overflow-x: hidden;  
-    background-image: url("Home.jpg");
+    background-image: url(" UR HOME.jpg");
     background-size:cover;
 }
 .slider{
-    margin-left:-70px;
+    margin-right:-800px;
     margin-top: 72px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(9px);
     min-height:200vh;
-    width:14.2rem;
+    width:2000px;
     padding-top: 1rem;
     overflow-y: auto;
     transition:0.2s ease;
@@ -106,7 +106,7 @@ body{
     transform: translateX(-50px);
 }
 .image{
-    margin-left: 20px;
+    margin-left: 300px;
     border-radius: 50%;
     height: 4.3rem;
     width:4.3rem;
@@ -119,10 +119,10 @@ body{
 }
 .profileToggle{
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(9px);
+    backdrop-filter: blur(50px);
 }
 .profile{
-    margin-left: -1900px;
+    margin-left: -2400px;
     display: flex;
     margin-top: -2px;
     /* border: 2px solid black; */
@@ -131,7 +131,7 @@ body{
 }
 .myprofile , .myrides , .mytransactions , .logout{
     height: 3.5rem;
-    margin: 1.5rem;
+    margin:0 rem;
     display: flex;
     border-radius: 0.4rem;
     width:11rem;
@@ -174,11 +174,11 @@ body{
 			</div>
 		</div>
 	</div>
-	<button class="button">Safety</button>
-	<button class="button" id="right">Help</button>
+	<button class="button"id="right">Safety</button>
+	<button class="button" >Help</button>
 	<div class="profile" id="profile">
             <img src="profile.jpg" alt="profileImage" class="image" id="imageToggle">
-        </div>
+    </div>
         <div class="close slider " id="hide">
             <div class="profileText">
                 <p class="maintext">John Wick</p>
