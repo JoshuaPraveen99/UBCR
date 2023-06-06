@@ -30,7 +30,7 @@
             <p>${bookedTaxi.carModel}</p> 
             <label for="estimated_time">Time of Arrival:</label>
             <p>${bookedTaxi.estimated_time}</p> 
-            
+            <p></p>
 </div>
 </body>
 
