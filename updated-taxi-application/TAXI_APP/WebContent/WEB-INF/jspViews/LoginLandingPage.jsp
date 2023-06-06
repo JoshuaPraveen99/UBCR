@@ -21,7 +21,7 @@
 <link href="./styles.css" rel="stylesheet" />
 <style>
 #right {
-	margin-left:-400px;
+	margin-right: 2400px;
 }
 
 
@@ -174,8 +174,8 @@ body{
 			</div>
 		</div>
 	</div>
-	<button class="button"id="right">Safety</button>
-	<button class="button" >Help</button>
+	<button class="button">Safety</button>
+	<button class="button" id="right">Help</button>
 	<div class="profile" id="profile">
             <img src="profile.jpg" alt="profileImage" class="image" id="imageToggle">
     </div>
