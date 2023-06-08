@@ -308,11 +308,11 @@ public class RideBookingServiceImpl implements RideBookingService{
 	
 	
      public List<Taxi> bookaAltRide(String pickup, String destination, double pickupTime){
- 		pickup=pickup;
- 		destination=destination;
+ 		this.pickup=pickup;
+ 		this.destination=destination;
  		taxiEntity.clear();
  		taxiEntity=tdao.findAll();
- 		System.out.println(taxiEntity);
+ 		System.out.println("ALT TAXI: "+taxiEntity);
  		taxis.clear();
  		for(TaxiEntity t:taxiEntity) {
  			if(t.getCarType().equals("Sedan")) {
@@ -361,10 +361,11 @@ public class RideBookingServiceImpl implements RideBookingService{
 			System.out.println(t.taxi_id+" DRIVER NAME: "+t.driverName+"     CAR TYPE: "+t.carType+"     CAR MODEL: "+t.carModel+"     ESTIMATED COST: "+t.calculatePayment((int)calculateDistance(pickup,destination))+"    ESTIMATED TIME OF ARRIVAL: "+t.estimated_time+" IST \n");
 		}*/
         SortedTaxis.clear() ;
-        for(int i=0;i<3;i++) {
-        	SortedTaxis.add(freeTaxis.get(i));
-        	
-        }
+        freeTaxis.forEach(taxi -> {
+            System.out.println("Sorting....");
+            SortedTaxis.add(taxi);
+        });
+        System.out.println("Sorted TAxi: "+SortedTaxis);
         return SortedTaxis;
      }
 	@Override
