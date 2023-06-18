@@ -103,6 +103,7 @@ body{
     visibility: visible;
 }
 .imageToggle{
+
     transform: translateX(-50px);
 }
 .image{
@@ -120,6 +121,7 @@ body{
 .profileToggle{
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(50px);
+    
 }
 .profile{
     margin-left: -2400px;
