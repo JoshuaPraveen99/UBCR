@@ -333,5 +333,71 @@ select:focus{
 #Login{
 	margin-right:100px;
 }
+#image{
+  margin-left: 300px;
+  border-radius: 50%;
+  height: 4.3rem;
+  width:4.3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#left{
+  margin-right: 750px;
+}
+#slider{
+  margin-right: -700px;
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(9px);
+  min-height: 200vh;
+  width: 400px;
+  padding-top: 1rem;
+  overflow-y: auto;
+  transition: 0.2s ease-in-out;
+  display: none;
+
+}
+.img_container{
+  background:inherit;
+  transition: background-color 0.1s ease;
+}
+.hide{
+  visibility:visible;
+}
+
+.maintext{
+  font-family: 'Times New Roman';
+  font-size: 30px;
+  text-align: center;
+}
+
+.myprofile , .myrides , .mytransactions , .logout{
+  height: 3.5rem;
+  margin:0 rem;
+  display: flex;
+  border-radius: 0.4rem;
+  width:11rem;
+  cursor: pointer;
+  display:flexbox;
+  align-items: center;
+  padding-left: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.text{
+  margin-left:1.5rem;
+}
+.childs:hover{
+  background-color: rgb(31, 30, 30);
+  color:white;
+}
+
+
+.change{
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(50px);
+}
+
+
 
 

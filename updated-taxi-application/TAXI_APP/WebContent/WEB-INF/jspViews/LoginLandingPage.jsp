@@ -20,8 +20,8 @@
 	rel="stylesheet" />
 <link href="./styles.css" rel="stylesheet" />
 <style>
-#right {
-	margin-right: 2400px;
+.left {
+	margin-left: -500px;
 }
 
 
@@ -41,6 +41,7 @@ select {
 .up {
 	margin-top: -15px;
 }
+
 /* Set the background color of the dropdown options */
   #pickUp_Location option {
     
@@ -79,84 +80,14 @@ select {
   #DropOff_Location option:hover {
     background-color: #bac2c1;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Chilanka&family=Finlandica&family=Grenze+Gotisch&family=Hubballi&family=Inter:wght@500&family=Lato&family=Lobster&family=Lobster+Two:wght@700&family=Manrope:wght@300&family=Martel&family=Open+Sans&family=Poppins:wght@200;300&family=Quicksand&family=Roboto:wght@300;400&family=Sansita+Swashed:wght@300&display=swap');
 
-
-body{
-    overflow-x: hidden;  
-    background-image: url(" UR HOME.jpg");
-    background-size:cover;
-}
-.slider{
-    margin-right:-800px;
-    margin-top: 72px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(9px);
-    min-height:200vh;
-    width:2000px;
-    padding-top: 1rem;
-    overflow-y: auto;
-    transition:0.2s ease;
-    visibility: hidden;
-}
-.hide{
-    visibility: visible;
-}
-.imageToggle{
-    transform: translateX(-50px);
-}
-.image{
-    margin-left: 300px;
-    border-radius: 50%;
-    height: 4.3rem;
-    width:4.3rem;
-    cursor: pointer;
-}
-.maintext{
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-align:center;
-}
-.profileToggle{
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(50px);
-}
-.profile{
-    margin-left: -2400px;
-    display: flex;
-    margin-top: -2px;
-    /* border: 2px solid black; */
-    width:14.2rem;
-    padding: 2px;
-}
-.myprofile , .myrides , .mytransactions , .logout{
-    height: 3.5rem;
-    margin:0 rem;
-    display: flex;
-    border-radius: 0.4rem;
-    width:11rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding-left: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-.childs:hover{
-    background-color: rgb(31, 30, 30);
-    color:white;
-}
-.text{
-    margin-left:1.5rem;
-}
- 
+  
   
 </style>
 <script src="https://kit.fontawesome.com/c118d74b64.js"
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1><p>${message}</p></h1>
 	<nav class="navbar"> <img src="LOGO.png" width="60px"
 		height="60px">
 	<button onclick="toggleMenu()" class="burger"></button>
@@ -175,29 +106,32 @@ body{
 		</div>
 	</div>
 	<button class="button">Safety</button>
-	<button class="button" id="right">Help</button>
-	<div class="profile" id="profile">
-            <img src="profile.jpg" alt="profileImage" class="image" id="imageToggle">
+	<button class="button" id="left">Help</button>
+    <div class="profile" >
+    <div class="img_container">
+    <img src="profile.jpg"  id="image">
     </div>
-        <div class="close slider " id="hide">
-            <div class="profileText">
-                <p class="maintext">John Wick</p>
-            </div>
-        
-            <div class="myprofile childs">
-                <i class="fa-solid fa-user"></i><p class="text" id="profileToggle">My Profile</p>
-                <a href="/logout"></a>
-            </div>
-            <div class="myrides childs">
-                <i class="fa-solid fa-car"></i><p class="text">My Rides</p>
-            </div>
-            <div class="mytransactions childs">
-                <i class="fa-solid fa-money-bill-transfer"></i><p class="text">Transactions</p>
-            </div>
-            <div class="logout childs">
-                <i class="fa-solid fa-right-from-bracket"></i><p class="text">Log Out</p>
-            </div>
+    <div id="slider" >
+        <div class="profileText">
+            <p class="maintext">John Wick</p>
         </div>
+    
+        <div class="myprofile childs">
+            <i class="fa-solid fa-user"></i><p class="text" >My Profile</p>
+            <a href="/logout"></a>
+        </div>
+        <div class="myrides childs">
+            <i class="fa-solid fa-car"></i><p class="text">My Rides</p>
+        </div>
+        <div class="mytransactions childs">
+            <i class="fa-solid fa-money-bill-transfer"></i><p class="text">Transactions</p>
+        </div>
+        <div class="logout childs">
+            <i class="fa-solid fa-right-from-bracket"></i><p class="text">Log Out</p>
+        </div>
+    </div>
+    </div>
+
 	</nav>
 	<div class="container">
 		<div class="options">
@@ -212,7 +146,8 @@ body{
 				<b>Request a ride now</b>
 			</h1>
 			<br>
-			
+			<!-- <input type="text" placeholder="Enter the pickup location"><br><br>
+          <input type="text" placeholder="Enter the destination"><br><br>-->
 
 			<div class="up">
 				<form:form id="LocationForm" method="POST" modelAttribute="formlocations" action="${pageContext.request.contextPath }/validateSession.html">
@@ -255,8 +190,6 @@ body{
 				delivering</a>
 		</div>
 	</div>
-        
-
 	<script>
       const toggleMenu = () => document.body.classList.toggle("open");
       const rideButton = document.getElementById('ride-button');
@@ -294,26 +227,36 @@ function getContextPath() {
 	}
 
 
-
-let arrow = document.querySelectorAll(".image")[0];
+}
+/*let image=document.querySelectorAll(".image")[0];
+let ImageToggle=documnet.getElementById(".imageToggle");
+let hide = document.querySelectorAll(".hide")[0];
+let profileToggle=document.getElementById(".profileToggle");
 let slider = document.querySelectorAll(".slider")[0];
-let profile = document.querySelectorAll(".profile")[0];
-let hide = document.getElementById("hide")[0];
-let imageToggle = document.getElementById("imageToggle")[0];
-let profileToggle = document.getElementById("profileToggle")[0];
-arrow.addEventListener("mouseenter" , ()=>{
-    slider.classList.add("hide");
-    profile.classList.add("profileToggle");
-    arrow.classList.add("imageToggle");
-    /*slider.classList.toggle("close");*/
+
+image.addEventListener("mouseenter", ()=> {
+     slider.classList.add("hide");
+     image.classList.add("imageToggle");
+});*/
+const image = document.getElementById('image');
+const slider=document.getElementById("slider");
+const profile = document.querySelector('.profile');
+const img_container=document.querySelector(".img_container");
+
+
+profile.addEventListener('mouseover', () => {
+  image.style.transform = 'translateX(-150px)';
+  slider.style.display = 'block';
+  img_container.classList.add('change');
 });
-slider.addEventListener("mouseleave", () => {
-    setTimeout(() => {
-      profile.classList.remove("profileToggle");
-    }, 200);
-    arrow.classList.remove("imageToggle");
-    slider.classList.remove("hide");
-  });
+
+profile.addEventListener('mouseout', () => {
+  image.style.backgroundColor = 'inherit'; // Reset background color
+  image.style.transform = 'translateX(0)';
+  slider.style.display = 'none';
+  img_container.classList.remove('change'); // Remove the class for additional properties
+});
+
 
 
 
@@ -322,3 +265,4 @@ slider.addEventListener("mouseleave", () => {
     </script>
 </body>
 </html>
+	
